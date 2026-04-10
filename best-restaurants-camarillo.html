@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Restaurants in Camarillo (2026) - The Camarillo Caller</title>
+<meta name="description" content="The best restaurants in Camarillo, CA — from authentic Mexican to Peruvian fine dining to a one-of-a-kind tiki bar. Hand-picked by The Camarillo Caller.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1f3b2c;
+  --red: #d3280e;
+  --cream: #f3e3c9;
+  --cream-mid: #ecdbb8;
+  --cream-dark: #e0cca0;
+  --gold: #c8960c;
+  --border: #d4bc96;
+  --text: #1a1209;
+  --gray: #6b5c3e;
+  --white: #fffef9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 28px,
+    rgba(180,150,100,0.04) 28px, rgba(180,150,100,0.04) 29px
+  );
+}
+
+/* NAV */
+nav {
+  background: var(--green);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--red);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a { color: rgba(243,227,201,0.7); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+.nav-links a:hover { color: var(--cream); }
+.nav-sub { background: var(--red); color: var(--cream) !important; padding: 0.4rem 1rem; border-radius: 3px; font-weight: 700 !important; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  background: var(--cream-dark);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  max-width: 100%;
+}
+.breadcrumb a { color: var(--green); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 0.4rem; color: var(--border); }
+
+/* ARTICLE HERO */
+.article-hero {
+  background: var(--white);
+  border-bottom: 3px double var(--border);
+  padding: 2.5rem 2rem 2rem;
+}
+.article-hero-inner { max-width: 780px; margin: 0 auto; }
+.article-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+}
+.article-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 0.03em;
+  color: var(--green);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+.article-hero .subtitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+.article-meta {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border);
+}
+.meta-pill {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* EDITORIAL NOTE */
+.editorial-note {
+  max-width: 780px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  line-height: 1.55;
+  font-style: italic;
+  display: flex;
+  gap: 0.4rem;
+}
+.editorial-note::before { content: 'ℹ'; flex-shrink: 0; }
+
+/* LAYOUT */
+.article-layout {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media(max-width:700px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .article-hero { padding: 1.5rem 1rem; }
+  .editorial-note { padding: 0 1rem; }
+  nav .nav-links { display: none; }
+}
+
+/* INTRO */
+.article-intro {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  border-radius: 0 4px 4px 0;
+}
+
+/* RESTAURANT LISTINGS */
+.restaurant {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  transition: box-shadow 0.15s;
+}
+.restaurant:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+.restaurant-header { padding: 1.25rem 1.25rem 0; }
+.restaurant-rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+}
+.cuisine-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--cream);
+  color: var(--green);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+.restaurant h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  margin-bottom: 0.3rem;
+  line-height: 1;
+}
+.restaurant-vibe {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--border);
+}
+.vibe-item { display: flex; align-items: center; gap: 0.25rem; }
+
+.restaurant-body { padding: 0.85rem 1.25rem; }
+.restaurant-body p {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+/* Order box */
+.order-box {
+  background: var(--cream);
+  border: 1px solid var(--cream-dark);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.85rem;
+}
+.order-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+}
+.order-items {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Best for */
+.best-for {
+  font-size: 0.75rem;
+  color: var(--gray);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
+}
+.best-for::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.restaurant-footer {
+  padding: 0.65rem 1.25rem 0.9rem;
+  border-top: 1px solid #f0ece4;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.r-btn {
+  font-size: 0.7rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.12s;
+}
+.r-btn:hover { background: var(--green); color: var(--cream); }
+.r-btn.primary { background: var(--green); color: var(--cream); border-color: var(--green); }
+
+/* Section break */
+.section-break {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--border);
+}
+.section-break::before, .section-break::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* SPONSOR NOTE */
+.sponsor-note {
+  font-size: 0.68rem;
+  color: #bbb;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+  line-height: 1.6;
+}
+.sponsor-note a { color: var(--green); text-decoration: underline; }
+
+/* SUBMIT CTA */
+.submit-cta {
+  background: var(--green);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.submit-cta h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+.submit-cta p { font-size: 0.75rem; color: rgba(243,227,201,0.7); margin-bottom: 0.75rem; line-height: 1.5; }
+.submit-cta a {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 76px; }
+.sidebar-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.sidebar-card-header {
+  background: var(--cream-dark);
+  padding: 0.5rem 0.85rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-card-body { padding: 0.85rem; }
+.sidebar-sub-card {
+  background: var(--red);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.sidebar-sub-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.sidebar-sub-card p { font-size: 0.72rem; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; line-height: 1.4; font-style: italic; font-family: 'Libre Baskerville', serif; }
+.sidebar-sub-card input { width: 100%; padding: 0.45rem 0.7rem; border: none; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; margin-bottom: 0.4rem; outline: none; }
+.sidebar-sub-card button { width: 100%; background: var(--green); color: var(--cream); border: none; padding: 0.45rem; border-radius: 3px; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.06em; cursor: pointer; }
+.bestof-list { list-style: none; }
+.bestof-list li { border-bottom: 1px dashed var(--border); }
+.bestof-list li:last-child { border-bottom: none; }
+.bestof-list a { display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.85rem; text-decoration: none; font-size: 0.78rem; color: var(--green); font-weight: 500; }
+.bestof-list a:hover { color: var(--red); }
+.bestof-list a::before { content: '→'; color: var(--red); font-size: 0.65rem; }
+.events-preview { list-style: none; padding: 0.5rem 0.85rem; }
+.events-preview li { padding: 0.4rem 0; border-bottom: 1px dashed var(--border); font-size: 0.75rem; color: var(--gray); line-height: 1.4; }
+.events-preview li:last-child { border-bottom: none; }
+.events-preview strong { color: var(--green); display: block; font-size: 0.78rem; }
+.sidebar-events-link { display: block; text-align: center; padding: 0.5rem; background: var(--green); color: var(--cream); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.06em; }
+
+/* FOOTER */
+.page-footer-cta {
+  background: var(--cream-dark);
+  border-top: 3px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.page-footer-cta h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--green); margin-bottom: 0.3rem; }
+.page-footer-cta p { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-style: italic; color: var(--gray); margin-bottom: 1rem; }
+.fcta-form { display: flex; max-width: 380px; margin: 0 auto; border: 2px solid var(--green); border-radius: 4px; overflow: hidden; }
+.fcta-form input { flex: 1; padding: 0.65rem 0.85rem; border: none; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; }
+.fcta-form button { background: var(--green); color: var(--cream); border: none; padding: 0.65rem 1rem; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.06em; cursor: pointer; white-space: nowrap; }
+footer { background: var(--green); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; border-top: 3px solid var(--red); }
+.footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+.footer-logo-text span { color: var(--red); }
+.footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.footer-nav a { font-size: 0.7rem; color: rgba(243,227,201,0.5); text-decoration: none; }
+.footer-nav a:hover { color: var(--cream); }
+.footer-copy { font-size: 0.65rem; color: rgba(243,227,201,0.3); }
+</style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c075c0ad11254ed899a09cd16e097b16"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="nav-links">
+    <a href="#">Newsletter</a>
+    <a href="#">Local News</a>
+    <a href="https://events.camarillocaller.com">Events</a>
+    <a href="#">Best Of</a>
+    <a class="nav-sub" href="#">Subscribe Free</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="#">Home</a><span>›</span>
+  <a href="#">Best Of Camarillo</a><span>›</span>
+  Best Restaurants
+</div>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat">🍽 Best Of Camarillo</div>
+    <h1>Best Restaurants in Camarillo (2026)</h1>
+    <p class="subtitle">From a legendary meat market to a Peruvian gem to the most unique bar in Ventura County — the best places to eat in Camarillo, hand-picked by The Camarillo Caller.</p>
+    <div class="article-meta">
+      <span>By Gabrielle Ridgeway</span>
+      <span>Updated March 2026</span>
+      <span class="meta-pill">🍽 5 picks</span>
+      <span class="meta-pill">📍 Camarillo, CA</span>
+    </div>
+  </div>
+</div>
+
+<div class="editorial-note" style="max-width:1060px;padding:0.75rem 2rem 0">
+  These are my personal picks based on living in Camarillo and knowing the food scene. I only recommend places I'd send a friend. None of these listings are paid or sponsored.
+</div>
+
+<div class="article-layout">
+<div class="article-main">
+
+  <p class="article-intro">Camarillo doesn't always get credit for its food scene — but it should. Between the authentic taquerias, the chef-driven hidden gems, and the spots that just feel like home, there's a lot more going on here than people realize. These are my five favorites. The places I actually go back to.</p>
+
+  <!-- 1. ESTABLOS -->
+  <div class="restaurant">
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">#1 Pick</div>
+        <div class="cuisine-tag">Mexican · Taqueria</div>
+      </div>
+      <h2>Establos Meat Market</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $</span>
+        <span class="vibe-item">⚡ Quick service</span>
+        <span class="vibe-item">🥡 Great for takeout</span>
+        <span class="vibe-item">👥 Casual / groups</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>If you only go to one place on this list, make it Establos. It's the kind of spot that looks unassuming from the outside but completely delivers every single time — big, filling portions, super flavorful meats, and that authentic market-plus-taqueria feel where everything tastes freshly made. The lengua and cabeza are standouts, and if you haven't tried their ceviche or chicharrón tacos, you're missing out.</p>
+      <p>My go-to order is the tamales and a breakfast burrito, but honestly it's hard to go wrong here. Fast service, no-frills atmosphere, consistently hits. This is Camarillo comfort food at its best.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Tamales · Breakfast burrito · Lengua tacos · Ceviche · Chicharrón tacos</div>
+      </div>
+      <div class="best-for">Best for casual meals, quick lunch stops, takeout, and low-key hangouts. Not really a date-night spot — more of a "grab something really good and satisfying" place.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="#">📍 Get Directions</a>
+      <a class="r-btn" href="#">View Menu</a>
+    </div>
+  </div>
+
+  <!-- 2. AZAFRAN -->
+  <div class="restaurant">
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">#2 Pick</div>
+        <div class="cuisine-tag">Peruvian · Chef-Driven</div>
+      </div>
+      <h2>Azafran</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $$–$$$</span>
+        <span class="vibe-item">🕯 Cozy & intimate</span>
+        <span class="vibe-item">❤️ Great date night</span>
+        <span class="vibe-item">🥂 Special occasions</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>Azafran is the kind of restaurant that makes you wonder why more people aren't talking about it. Peruvian cuisine done right — chef-driven, thoughtfully composed, with bold flavors you genuinely don't find anywhere else locally. It's a small, cozy spot, and that intimacy is part of what makes it special.</p>
+      <p>The Peruvian ceviche alone is worth the trip, but the pork belly chaufa and shrimp tacos keep coming up as standouts too. Everything feels considered rather than casual — this isn't a quick bite, it's a meal you actually sit with and enjoy. A true hidden gem in the best sense of the phrase.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Peruvian ceviche · Pork belly chaufa · Shrimp tacos</div>
+      </div>
+      <div class="best-for">Best for date nights, slow Sunday brunches, and dinners with friends where you want to actually enjoy the experience. Make a reservation.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="#">📍 Get Directions</a>
+      <a class="r-btn" href="#">View Menu</a>
+    </div>
+  </div>
+
+  <div class="section-break">More Great Picks</div>
+
+  <!-- 3. LOLA BETTY'S -->
+  <div class="restaurant">
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">#3 Pick</div>
+        <div class="cuisine-tag">Filipino · Family-Run</div>
+      </div>
+      <h2>Lola Betty's Kitchen</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $–$$</span>
+        <span class="vibe-item">🏡 Home-style</span>
+        <span class="vibe-item">🥡 Great for takeout</span>
+        <span class="vibe-item">🌿 Outdoor seating</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>There aren't many places in Camarillo doing authentic Filipino food, which makes Lola Betty's a genuine local treasure. It has that family-run, cooked-with-care feel that you just can't fake — and the portions are generous, the flavors are bold and comforting, and everything is made to order. Expect a bit of a wait, but it's worth it.</p>
+      <p>The chicken adobo is the kind of dish that makes you understand why Filipino cooking has such a loyal following. The BBQ chicken and short ribs are just as good, and the lumpia is non-negotiable as a side. Grab your order and take it outside — there are picnic tables, or you can head across the street with a drink and make an afternoon of it.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Chicken adobo · BBQ chicken · Short ribs · Pancit · Lumpia (get the side, always)</div>
+      </div>
+      <div class="best-for">Best for takeout, casual meals, and outdoor hangs. The kind of place you bring people to introduce them to Filipino food for the first time.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="#">📍 Get Directions</a>
+      <a class="r-btn" href="#">View Menu</a>
+    </div>
+  </div>
+
+  <!-- 4. TWISTED OAK -->
+  <div class="restaurant">
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">#4 Pick</div>
+        <div class="cuisine-tag">Gastropub · American</div>
+      </div>
+      <h2>Twisted Oak Tavern</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $$</span>
+        <span class="vibe-item">🍺 Great drinks</span>
+        <span class="vibe-item">🎵 Live music</span>
+        <span class="vibe-item">🌙 Open late</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>Twisted Oak is Camarillo's best answer to the question "where do we go for a fun night out?" It's lively, social, and the kind of place where the menu is actually big enough that everyone in your group finds something they love. The food genuinely delivers — which isn't always a given at a spot this focused on atmosphere.</p>
+      <p>The short rib nachos are legendary, the lobster mac & cheese is indulgent in exactly the right way, and the PB&J burger is one of those things that sounds weird until you try it. Strong drinks, live music most nights, and one of the few spots in town where you can keep the evening going past 9pm. The service consistently gets praised too, which matters.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Short rib nachos · Lobster mac & cheese · PB&J burger · Cuban sandwich</div>
+      </div>
+      <div class="best-for">Best for happy hour, group dinners, casual date nights, and nights out when you want good food AND good drinks AND live music in one place.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="#">📍 Get Directions</a>
+      <a class="r-btn" href="#">View Menu</a>
+    </div>
+  </div>
+
+  <!-- 5. HOUSE OF BAMBOO -->
+  <div class="restaurant">
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">#5 Pick</div>
+        <div class="cuisine-tag">Tiki Bar · Hawaiian-Inspired</div>
+      </div>
+      <h2>House of Bamboo</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $$–$$$</span>
+        <span class="vibe-item">🌴 Immersive experience</span>
+        <span class="vibe-item">🍹 Craft cocktails</span>
+        <span class="vibe-item">📅 Reservations recommended</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>There is nothing else like House of Bamboo in Ventura County. Fully immersive tiki atmosphere — we're talking special effects, simulated rainstorms, and insane attention to detail — this place is a destination, not just a restaurant. If you have out-of-town guests, this is where you take them. No question.</p>
+      <p>The cocktails are the main event — the Painkiller and Hurricane are both standouts — but the food holds up impressively well for a tiki bar. Coconut shrimp, loco moco, spam musubi — it all fits the vibe and actually tastes great. Plan ahead: this isn't a walk-in spot, and the experience is better when you commit to it fully. Make a reservation, order the drinks, and let the atmosphere do its thing.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Painkiller (cocktail) · Hurricane (cocktail) · Coconut shrimp · Loco moco · Spam musubi</div>
+      </div>
+      <div class="best-for">Best for date nights, special occasions, birthdays, and showing off Camarillo to people who don't believe something this cool exists here. Make a reservation.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="#">📍 Get Directions</a>
+      <a class="r-btn" href="#">Make a Reservation</a>
+    </div>
+  </div>
+
+  <div class="sponsor-note">
+    This list reflects my genuine personal recommendations. None of these restaurants are paid placements. <a href="#">Learn about advertising with The Camarillo Caller</a>
+  </div>
+
+  <div class="submit-cta">
+    <h3>Know a spot we missed?</h3>
+    <p>Reply to any newsletter issue or email us — we update these guides regularly as the Camarillo food scene evolves.</p>
+    <a href="/cdn-cgi/l/email-protection#650d0009090a2506040804170c09090a0604090900174b060a08">📢 Tell Us About It</a>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="sidebar-sub-card">
+    <h3>Get the best of Camarillo every Thursday</h3>
+    <p>Events, local news, and hidden gems — free to your inbox.</p>
+    <input type="email" placeholder="Your email address">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">More Best Of Camarillo</div>
+    <ul class="bestof-list">
+      <li><a href="#">🎉 Best Things To Do</a></li>
+      <li><a href="#">💎 Hidden Gems</a></li>
+      <li><a href="#">☕ Best Coffee Shops</a></li>
+      <li><a href="#">🥞 Best Brunch Spots</a></li>
+      <li><a href="#">👨‍👩‍👧 Best Family Activities</a></li>
+      <li><a href="#">🌳 Best Parks & Outdoors</a></li>
+      <li><a href="#">🌮 Best Tacos</a></li>
+      <li><a href="#">🍺 Best Bars & Breweries</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">📅 This Weekend</div>
+    <ul class="events-preview">
+      <li><strong>Trinity Spring Craft Market</strong>Sat 11am · 2304 Antonio Ave</li>
+      <li><strong>Friday Night Car Cruises</strong>Fri 4pm · Old Town Camarillo</li>
+      <li><strong>Camarillo Farmers Market</strong>Sat 7am · Daily Drive</li>
+    </ul>
+    <a class="sidebar-events-link" href="https://events.camarillocaller.com">Browse all events →</a>
+  </div>
+
+</div>
+</div>
+
+<div class="page-footer-cta">
+  <h3>Don't Miss Next Thursday's Issue</h3>
+  <p>Local news, events, and more guides like this — every week, free.</p>
+  <div class="fcta-form">
+    <input type="email" placeholder="Enter your email...">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo-text" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="footer-nav">
+    <a href="#">Newsletter</a>
+    <a href="#">Events</a>
+    <a href="#">Best Of</a>
+    <a href="#">Local News</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 The Ca

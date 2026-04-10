@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Parks & Outdoor Spots in Camarillo, CA (2026) - The Camarillo Caller</title>
+<meta name="description" content="The best parks and outdoor spots in Camarillo, CA — from a Camarillo trailhead to Paradise Falls to Point Mugu beach. Local picks from The Camarillo Caller.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1f3b2c;
+  --red: #d3280e;
+  --cream: #f3e3c9;
+  --cream-mid: #ecdbb8;
+  --cream-dark: #e0cca0;
+  --gold: #c8960c;
+  --border: #d4bc96;
+  --text: #1a1209;
+  --gray: #6b5c3e;
+  --white: #fffef9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 28px,
+    rgba(180,150,100,0.04) 28px, rgba(180,150,100,0.04) 29px
+  );
+}
+
+/* NAV */
+nav {
+  background: var(--green);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--red);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a { color: rgba(243,227,201,0.7); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+.nav-links a:hover { color: var(--cream); }
+.nav-sub { background: var(--red); color: var(--cream) !important; padding: 0.4rem 1rem; border-radius: 3px; font-weight: 700 !important; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  background: var(--cream-dark);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  max-width: 100%;
+}
+.breadcrumb a { color: var(--green); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 0.4rem; color: var(--border); }
+
+/* ARTICLE HERO */
+.article-hero {
+  background: var(--white);
+  border-bottom: 3px double var(--border);
+  padding: 2.5rem 2rem 2rem;
+}
+.article-hero-inner { max-width: 780px; margin: 0 auto; }
+.article-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+}
+.article-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 0.03em;
+  color: var(--green);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+.article-hero .subtitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+.article-meta {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border);
+}
+.meta-pill {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* EDITORIAL NOTE */
+.editorial-note {
+  max-width: 780px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  line-height: 1.55;
+  font-style: italic;
+  display: flex;
+  gap: 0.4rem;
+}
+.editorial-note::before { content: 'ℹ'; flex-shrink: 0; }
+
+/* LAYOUT */
+.article-layout {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media(max-width:700px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .article-hero { padding: 1.5rem 1rem; }
+  .editorial-note { padding: 0 1rem; }
+  nav .nav-links { display: none; }
+}
+
+/* INTRO */
+.article-intro {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  border-radius: 0 4px 4px 0;
+}
+
+/* LISTINGS */
+.restaurant {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  transition: box-shadow 0.15s;
+}
+.restaurant:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+.restaurant-header { padding: 1.25rem 1.25rem 0; }
+.restaurant-rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+}
+.cuisine-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--cream);
+  color: var(--green);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+.restaurant h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  margin-bottom: 0.3rem;
+  line-height: 1;
+}
+.restaurant-vibe {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--border);
+}
+.vibe-item { display: flex; align-items: center; gap: 0.25rem; }
+
+.restaurant-body { padding: 0.85rem 1.25rem; }
+.restaurant-body p {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+/* Info box (replaces order box) */
+.order-box {
+  background: var(--cream);
+  border: 1px solid var(--cream-dark);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.85rem;
+}
+.order-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+}
+.order-items {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Best for */
+.best-for {
+  font-size: 0.75rem;
+  color: var(--gray);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
+}
+.best-for::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.restaurant-footer {
+  padding: 0.65rem 1.25rem 0.9rem;
+  border-top: 1px solid #f0ece4;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.r-btn {
+  font-size: 0.7rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.12s;
+}
+.r-btn:hover { background: var(--green); color: var(--cream); }
+.r-btn.primary { background: var(--green); color: var(--cream); border-color: var(--green); }
+
+/* Section break */
+.section-break {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--border);
+}
+.section-break::before, .section-break::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* SPONSOR NOTE */
+.sponsor-note {
+  font-size: 0.68rem;
+  color: #bbb;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+  line-height: 1.6;
+}
+.sponsor-note a { color: var(--green); text-decoration: underline; }
+
+/* SUBMIT CTA */
+.submit-cta {
+  background: var(--green);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.submit-cta h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+.submit-cta p { font-size: 0.75rem; color: rgba(243,227,201,0.7); margin-bottom: 0.75rem; line-height: 1.5; }
+.submit-cta a {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 76px; }
+.sidebar-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.sidebar-card-header {
+  background: var(--cream-dark);
+  padding: 0.5rem 0.85rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-sub-card {
+  background: var(--red);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.sidebar-sub-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.sidebar-sub-card p { font-size: 0.72rem; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; line-height: 1.4; font-style: italic; font-family: 'Libre Baskerville', serif; }
+.sidebar-sub-card input { width: 100%; padding: 0.45rem 0.7rem; border: none; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; margin-bottom: 0.4rem; outline: none; }
+.sidebar-sub-card button { width: 100%; background: var(--green); color: var(--cream); border: none; padding: 0.45rem; border-radius: 3px; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.06em; cursor: pointer; }
+.bestof-list { list-style: none; }
+.bestof-list li { border-bottom: 1px dashed var(--border); }
+.bestof-list li:last-child { border-bottom: none; }
+.bestof-list a { display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.85rem; text-decoration: none; font-size: 0.78rem; color: var(--green); font-weight: 500; }
+.bestof-list a:hover { color: var(--red); }
+.bestof-list a::before { content: '→'; color: var(--red); font-size: 0.65rem; }
+.events-preview { list-style: none; padding: 0.5rem 0.85rem; }
+.events-preview li { padding: 0.4rem 0; border-bottom: 1px dashed var(--border); font-size: 0.75rem; color: var(--gray); line-height: 1.4; }
+.events-preview li:last-child { border-bottom: none; }
+.events-preview strong { color: var(--green); display: block; font-size: 0.78rem; }
+.sidebar-events-link { display: block; text-align: center; padding: 0.5rem; background: var(--green); color: var(--cream); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.06em; }
+
+/* FOOTER */
+.page-footer-cta {
+  background: var(--cream-dark);
+  border-top: 3px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.page-footer-cta h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--green); margin-bottom: 0.3rem; }
+.page-footer-cta p { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-style: italic; color: var(--gray); margin-bottom: 1rem; }
+.fcta-form { display: flex; max-width: 380px; margin: 0 auto; border: 2px solid var(--green); border-radius: 4px; overflow: hidden; }
+.fcta-form input { flex: 1; padding: 0.65rem 0.85rem; border: none; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; }
+.fcta-form button { background: var(--green); color: var(--cream); border: none; padding: 0.65rem 1rem; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.06em; cursor: pointer; white-space: nowrap; }
+footer { background: var(--green); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; border-top: 3px solid var(--red); }
+.footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+.footer-logo-text span { color: var(--red); }
+.footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.footer-nav a { font-size: 0.7rem; color: rgba(243,227,201,0.5); text-decoration: none; }
+.footer-nav a:hover { color: var(--cream); }
+.footer-copy { font-size: 0.65rem; color: rgba(243,227,201,0.3); }
+
+.restaurant-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+.photo-credit {
+  font-size: 0.58rem;
+  color: var(--gray);
+  padding: 0.2rem 1.25rem;
+  font-style: italic;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+</style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c075c0ad11254ed899a09cd16e097b16"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="nav-links">
+    <a href="#">Newsletter</a>
+    <a href="#">Local News</a>
+    <a href="https://events.camarillocaller.com">Events</a>
+    <a href="#">Best Of</a>
+    <a class="nav-sub" href="#">Subscribe Free</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="#">Home</a><span>›</span>
+  <a href="#">Best Of Camarillo</a><span>›</span>
+  Best Parks &amp; Outdoors
+</div>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat">🌿 Best Of Camarillo</div>
+    <h1>Best Parks &amp; Outdoor Spots in Camarillo (2026)</h1>
+    <p class="subtitle">From a Camarillo trailhead that leads to a waterfall to one of the best beach drives in Ventura County. The best places to get outside, picked by someone who lives here.</p>
+    <div class="article-meta">
+      <span>By Gabrielle Ridgeway</span>
+      <span>Updated April 2026</span>
+      <span class="meta-pill">🌿 6 picks</span>
+      <span class="meta-pill">📍 Camarillo, CA</span>
+    </div>
+  </div>
+</div>
+
+<div class="editorial-note" style="max-width:1060px;padding:0.75rem 2rem 0">
+  These are my personal picks based on living in Camarillo. A few are just outside city limits but within a short drive and well worth it.
+</div>
+
+<div class="article-layout">
+<div class="article-main">
+
+  <p class="article-intro">Camarillo sits right between the mountains and the ocean, which means you have a lot of options when you want to get outside. A proper waterfall hike, a shaded creekside trail, wide open beach, an abandoned dairy with a genuinely strange history. These are the outdoor spots locals actually go back to.</p>
+
+  <!-- ENTRY 1 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/pointmugu.jpg" alt="Point Mugu State Beach cliffs and coastline" style="object-position:center center">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Overall Outdoor Escape</div>
+        <div class="cuisine-tag">State Beach + Hiking</div>
+      </div>
+      <h2>Point Mugu State Beach</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🌊 Ocean cliffs</span>
+        <span class="vibe-item">🥾 Coastal hiking trails</span>
+        <span class="vibe-item">🌅 Great for sunsets</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>If you only go to one place on this list, make it this. Point Mugu is a short drive down PCH from Camarillo and it genuinely feels like a full reset. Long stretches of sand, dramatic cliffs, and hiking trails that look out over the Pacific.</p>
+      <p>It is one of those spots that looks like it should be two hours away and is somehow 20 minutes from your front door.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Day use fee applies · Dogs allowed on leash on the beach · Arrive early on weekends</div>
+      </div>
+      <div class="best-for">Best for beach days, sunset walks, coastal hiking, and anyone who needs a real break from town.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/Point+Mugu+State+Beach+Ventura+County+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <div class="section-break">More Great Outdoor Spots</div>
+
+  <!-- ENTRY 2 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/paradise_falls.jpg" alt="Paradise Falls waterfall in Wildwood Park, Thousand Oaks" style="object-position:right center">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Hike</div>
+        <div class="cuisine-tag">Trail + Waterfall</div>
+      </div>
+      <h2>Paradise Falls via Hill Canyon Trailhead</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💧 Waterfall destination</span>
+        <span class="vibe-item">🅿️ Free parking in Camarillo</span>
+        <span class="vibe-item">🥾 5.3 to 6.5 miles</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>Most people don't know there's a Camarillo trailhead for Paradise Falls. The parking area is right off Hill Canyon Road in Camarillo, and from there you hike into Wildwood Park to one of the best waterfall payoffs in Ventura County.</p>
+      <p>It is a real hike, 5 to 6.5 miles depending on the route, with about 900 to 1,000 feet of elevation. Not casual, but completely doable. The falls at the end make it worth it.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Free parking off Hill Canyon Road · Lizard Rock route: 6.5 mi · Canyon Overlook route: 5.3 mi · Can be crowded near the falls on weekends</div>
+      </div>
+      <div class="best-for">Best for anyone who wants a proper hike with a destination, morning weekend warriors, and people who have lived here for years without realizing this trailhead exists.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/Hill+Canyon+Road+Trailhead+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 3 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/Camarillo_grove.jpg" alt="Trail through Camarillo Grove Park" style="object-position:center 40%">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Easy Trail</div>
+        <div class="cuisine-tag">Park + Nature Trail</div>
+      </div>
+      <h2>Camarillo Grove Park</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🌳 Shaded oak trails</span>
+        <span class="vibe-item">🥾 Multiple trail lengths</span>
+        <span class="vibe-item">🐕 Off-leash dogs on weekdays</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>One of the best spots in Camarillo to actually get into nature. Shaded hiking trails through native oak trees, picnic areas, and a quieter feel than most nearby parks. It does not feel like you are just walking around a neighborhood.</p>
+      <p>If you have a dog, come on a weekday — it is one of the few places in Camarillo where dogs are welcome off-leash, which makes it a genuinely great outing.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Free to visit · Multiple trail lengths · Shaded throughout · Picnic areas · Off-leash dogs welcome on weekdays</div>
+      </div>
+      <div class="best-for">Best for hikers, dog owners especially on weekdays, and families looking for a low-key outdoor morning.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/Camarillo+Grove+Park+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 4 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/CSUCI.webp" alt="CSUCI campus with the Scary Dairy ruins visible in the valley" style="object-position:center 60%">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Scenic Walk</div>
+        <div class="cuisine-tag">University Park + Open Space</div>
+      </div>
+      <h2>CSU Channel Islands University Park</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🏔️ Mountain views</span>
+        <span class="vibe-item">👻 The Scary Dairy</span>
+        <span class="vibe-item">🌿 Open daily sunrise to sunset</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>A 2.3-mile easy loop through open green space with some of the best mountain views you can get on a casual walk in Camarillo. Wide dirt path, good for hiking, running, or just getting outside. Dogs are welcome on leash. Usually quiet, even on weekends.</p>
+      <p>If you walk far enough, you will come across the ruins of an old dairy farm — weathered buildings behind a fence, covered in graffiti. The campus sits on the grounds of the former Camarillo State Mental Hospital, and the dairy is where patients worked as part of their therapy. Locals call it the Scary Dairy. Worth the detour.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Free and open daily, sunrise to sunset · 2.3-mile easy loop · Dogs on leash · Old Dairy Rd, Camarillo · Dairy ruins visible from trail but fenced off</div>
+      </div>
+      <div class="best-for">Best for easy hikes, morning runs, dog owners, and anyone who likes their green space with a side of weird local history.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/CSU+Channel+Islands+University+Park+Old+Dairy+Rd+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 5 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/bikepath.webp" alt="Cyclist on the Rancho Calleguas Creek Bike Path with mountain views" style="object-position:center center">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Bike &amp; Jog Route</div>
+        <div class="cuisine-tag">Paved Trail</div>
+      </div>
+      <h2>Rancho Calleguas Creek Bike Path</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🚲 Biking</span>
+        <span class="vibe-item">🏃 Jogging + walking</span>
+        <span class="vibe-item">👶 Stroller friendly</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>A paved trail running from Pleasant Valley Sports Fields in the south to Upland Road in the north, following a clean path along the dry riverbed with mountain views in the background. Good for biking, jogging, walking, or a stroller push. Easy to pick up from a lot of Camarillo neighborhoods.</p>
+      <p>The trail is fully paved and at least 6 feet wide throughout. Afternoons tend to be cooler and a little more comfortable in warmer months.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Free · Fully paved · Accessible parking at Village at the Park Drive · Multiple access points · Stroller and wheelchair friendly on most sections</div>
+      </div>
+      <div class="best-for">Best for biking, jogging, stroller walks, and anyone who wants an easy paved route through Camarillo.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/Rancho+Calleguas+Creek+Bike+Path+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 6 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/MIssion_oaks.webp" alt="Path through Mission Oaks Park, Camarillo" style="object-position:center center">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Family Park</div>
+        <div class="cuisine-tag">Neighborhood Park</div>
+      </div>
+      <h2>Mission Oaks Park</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🛝 Playgrounds</span>
+        <span class="vibe-item">⚽ Sports fields</span>
+        <span class="vibe-item">🌳 Plenty of shade</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>A 1.4-mile easy loop through one of Camarillo's best all-around parks. Playgrounds, sports fields, open lawn, and a path that is quiet enough that you can usually find some solitude even during the day. Dogs are welcome on leash.</p>
+      <p>Easy to access, easy terrain, and good for all ages. The kind of park you plan to stay at for 30 minutes and end up staying longer.</p>
+      <div class="order-box">
+        <div class="order-label">📍 Good to know</div>
+        <div class="order-items">Free · 1.4-mile loop · Restrooms on site · Dogs on leash · Open year-round</div>
+      </div>
+      <div class="best-for">Best for families, casual afternoons, dog owners, and anyone who wants an easy outdoor loop without driving far.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/Mission+Oaks+Park+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <div class="sponsor-note">
+    This list reflects my genuine personal recommendations. None of these listings are paid placements. <a href="#">Learn about advertising with The Camarillo Caller</a>
+  </div>
+
+  <div class="submit-cta">
+    <h3>Know a spot we missed?</h3>
+    <p>Reply to any newsletter issue or email us. We update these guides regularly.</p>
+    <a href="#">📢 Tell Us About It</a>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="sidebar-sub-card">
+    <h3>Get the best of Camarillo every Thursday</h3>
+    <p>Events, local news, and hidden gems free to your inbox.</p>
+    <input type="email" placeholder="Your email address">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">More Best Of Camarillo</div>
+    <ul class="bestof-list">
+      <li><a href="#">🎉 Best Things To Do</a></li>
+      <li><a href="#">💎 Hidden Gems</a></li>
+      <li><a href="#">☕ Best Coffee Shops</a></li>
+      <li><a href="#">🥞 Best Brunch Spots</a></li>
+      <li><a href="#">👨‍👩‍👧 Best Family Activities</a></li>
+      <li><a href="best-parks-outdoors-camarillo">🌳 Best Parks &amp; Outdoors</a></li>
+      <li><a href="#">🌮 Best Tacos</a></li>
+      <li><a href="#">🍺 Best Bars &amp; Breweries</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">📅 This Weekend</div>
+    <ul class="events-preview">
+      <li><strong>Trinity Spring Craft Market</strong>Sat 11am · 2304 Antonio Ave</li>
+      <li><strong>Friday Night Car Cruises</strong>Fri 4pm · Old Town Camarillo</li>
+      <li><strong>Camarillo Farmers Market</strong>Sat 7am · Daily Drive</li>
+    </ul>
+    <a class="sidebar-events-link" href="https://events.camarillocaller.com">Browse all events →</a>
+  </div>
+
+</div>
+</div>
+
+<div class="page-footer-cta">
+  <h3>Don't Miss Next Thursday's Issue</h3>
+  <p>Local news, events, and more guides like this every week, free.</p>
+  <div class="fcta-form">
+    <input type="email" placeholder="Enter your email...">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo-text" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="footer-nav">
+    <a href="#">Newsletter</a>
+    <a href="#">Events</a>
+    <a href="#">Best Of</a>
+    <a href="#">Local News</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 The Camarillo Caller</div>
+</footer>
+
+</body>
+</html>

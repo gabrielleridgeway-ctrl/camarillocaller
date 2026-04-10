@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camarillo Events - The Camarillo Caller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+:root{--green:#1f3b2c;--red:#d3280e;--cream:#f3e3c9;--border:#d4bc96;--gray:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:var(--cream);color:var(--green)}
+.page{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+@media(max-width:700px){
+  html,body{height:auto;overflow:auto}
+  .page{height:auto;overflow:visible;min-height:100vh}
+}
+header{background:var(--green);padding:0 1.5rem;height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:0.05em;text-transform:uppercase}
+.sub-btn{background:var(--red);color:#fff;text-decoration:none;padding:0.4rem 1rem;border-radius:4px;font-size:0.8rem;font-weight:600;white-space:nowrap}
+.hero{background:var(--cream);padding:1.25rem 1rem 1rem;text-align:center;border-bottom:3px solid var(--red);flex-shrink:0}
+.hero h1{font-size:clamp(1.3rem,3vw,2rem);font-weight:800;color:var(--green);letter-spacing:-0.02em}
+.hero p{font-size:0.82rem;color:#5a4a30;margin-top:0.25rem}
+.filters{background:#fff;border-bottom:1px solid var(--border);padding:0.5rem 1rem;display:flex;gap:0.3rem;flex-wrap:wrap;align-items:center;flex-shrink:0}
+.filter-label{font-size:0.67rem;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.08em;margin-right:0.2rem}
+.fbtn{border:1.5px solid var(--border);background:transparent;padding:0.22rem 0.65rem;border-radius:999px;font-family:'Inter',sans-serif;font-size:0.73rem;font-weight:500;cursor:pointer;color:var(--green);transition:all 0.15s}
+.fbtn:hover{border-color:var(--green)}
+.fbtn.active{background:var(--green);border-color:var(--green);color:#fff}
+.fbtn[data-cat="food"].active{background:#c4501a;border-color:#c4501a}
+.fbtn[data-cat="kids"].active{background:#3a7ca5;border-color:#3a7ca5}
+.fbtn[data-cat="outdoors"].active{background:#4a7c59;border-color:#4a7c59}
+.fbtn[data-cat="arts"].active{background:#7b6fa0;border-color:#7b6fa0}
+.fbtn[data-cat="markets"].active{background:#b05e8a;border-color:#b05e8a}
+.fbtn[data-cat="community"].active{background:#b8860b;border-color:#b8860b}
+.fbtn[data-cat="featured"].active{background:#c8960c;border-color:#c8960c}
+.free-badge{font-size:0.58rem;font-weight:700;padding:0.08rem 0.38rem;border-radius:999px;background:#e8f5ee;color:#1f6b3a;border:1px solid #b8ddc8;text-transform:uppercase;letter-spacing:0.04em;margin-left:0.3rem}
+.featured-section{background:linear-gradient(135deg,#fef8e7,#fff8f0);border-bottom:2px solid #e8d48a;padding:0.5rem 0}
+.featured-header{padding:0.3rem 1rem 0.4rem;font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#8a6a00;display:flex;align-items:center;gap:0.3rem}
+.featured-card{padding:0.65rem 1rem;border-bottom:1px solid #f0e8c8;cursor:pointer;display:flex;gap:0.65rem;transition:background 0.1s;background:transparent}
+.featured-card:hover{background:#fffbf0}
+.featured-card.active{background:#fff8e0;border-left:3px solid #c8960c;padding-left:calc(1rem - 3px)}
+.wbtn{border:1.5px solid var(--border);background:transparent;padding:0.22rem 0.65rem;border-radius:999px;font-family:'Inter',sans-serif;font-size:0.73rem;font-weight:500;cursor:pointer;color:var(--green);transition:all 0.15s}
+.wbtn:hover{border-color:var(--green)}
+.wbtn.weekend-active{background:#d3280e;border-color:#d3280e;color:#fff}
+.search-bar{background:#fff;border-bottom:1px solid var(--border);padding:0.45rem 1rem;flex-shrink:0}
+.search-bar input{width:100%;padding:0.35rem 0.75rem;border:1.5px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--green);outline:none}
+.search-bar input:focus{border-color:var(--green)}
+.layout{display:grid;grid-template-columns:360px 1fr;flex:1;overflow:hidden;min-height:0}
+.event-list{overflow-y:scroll;border-right:1px solid var(--border);background:#fff;scrollbar-width:none;min-height:0}
+.event-list::-webkit-scrollbar{display:none}
+.list-top{padding:0.65rem 1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#fff;position:sticky;top:0;z-index:5}
+.list-top h2{font-size:0.85rem;font-weight:700}
+.list-top span{font-size:0.72rem;color:var(--gray)}
+.date-label{padding:0.3rem 1rem;font-size:0.63rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#888;background:var(--cream);border-bottom:1px solid var(--border)}
+.ecard{padding:0.7rem 1rem;border-bottom:1px solid var(--border);cursor:pointer;display:flex;gap:0.65rem;transition:background 0.1s}
+.ecard:hover{background:#faf6f0}
+.ecard.active{background:#fff5f0;border-left:3px solid var(--red);padding-left:calc(1rem - 3px)}
+.edot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.einfo{flex:1;min-width:0}
+.etitle{font-size:0.82rem;font-weight:600;margin-bottom:0.15rem;line-height:1.3}
+.emeta{font-size:0.7rem;color:var(--gray);display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.18rem}
+.eloc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px;display:inline-block}
+.ebadge{font-size:0.58rem;font-weight:600;padding:0.08rem 0.38rem;border-radius:999px;text-transform:uppercase;letter-spacing:0.04em}
+.status-msg{padding:2rem 1rem;text-align:center;color:var(--gray);font-size:0.85rem;line-height:1.8}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.show-more-btn{display:block;width:calc(100% - 2rem);margin:0.75rem 1rem;padding:0.45rem;background:var(--green);color:#fff;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;text-align:center}
+.all-shown{padding:0.6rem 1rem;text-align:center;font-size:0.72rem;color:#aaa}
+#map{width:100%;height:100%}
+
+/* Detail panel - bottom left, same width as event list */
+.detail-panel{
+  display:none;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:360px;
+  background:#fff;
+  border-top:3px solid var(--red);
+  border-right:1px solid var(--border);
+  box-shadow:0 -4px 16px rgba(0,0,0,0.12);
+  z-index:600;
+  padding:0.65rem 1rem 0.8rem;
+}
+.detail-panel.open{display:block}
+.detail-close{float:right;background:none;border:none;font-size:1rem;cursor:pointer;color:var(--gray);padding:0.15rem;line-height:1;margin-left:0.5rem}
+.detail-cat{font-size:0.6rem;font-weight:600;padding:0.1rem 0.4rem;border-radius:999px;text-transform:uppercase;letter-spacing:0.05em;display:inline-block;margin-bottom:0.25rem}
+.detail-title{font-size:0.9rem;font-weight:700;color:var(--green);margin-bottom:0.2rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail-meta{font-size:0.72rem;color:var(--gray);margin-bottom:0.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.detail-desc{font-size:0.72rem;color:#555;margin-top:0.3rem;line-height:1.4}
+.detail-desc.collapsed{overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.see-more-btn{background:none;border:none;color:var(--green);font-size:0.7rem;font-weight:600;cursor:pointer;padding:0.2rem 0;text-decoration:underline;display:block;margin-top:0.2rem;font-family:'Inter',sans-serif}
+.detail-map-btn{display:inline-block;margin-top:0.35rem;background:var(--green);color:#fff;text-decoration:none;padding:0.22rem 0.6rem;border-radius:4px;font-size:0.7rem;font-weight:600}
+.detail-actions{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.4rem}
+.detail-action-btn{display:inline-block;padding:0.22rem 0.6rem;border-radius:4px;font-size:0.7rem;font-weight:600;text-decoration:none;border:1.5px solid var(--green);color:var(--green);background:#fff;cursor:pointer;font-family:'Inter',sans-serif}
+.detail-action-btn:hover{background:var(--green);color:#fff}
+.fbtn.weekend-active{background:#d3280e;border-color:#d3280e;color:#fff}
+
+.footer-bar{background:var(--green);color:#fff;text-align:center;padding:0.5rem 1rem;font-size:0.76rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;flex-shrink:0}
+.footer-bar a{color:var(--cream);text-decoration:underline}
+@media(max-width:700px){
+  /* Hero - shrink to save space */
+  .hero{padding:0.75rem 1rem 0.6rem}
+  .hero h1{font-size:1.3rem}
+  .hero p{font-size:0.75rem;margin-top:0.15rem}
+
+  /* Filters - single scrollable row, no wrapping */
+  .filters{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0.4rem 1rem;scrollbar-width:none;gap:0.35rem}
+  .filters::-webkit-scrollbar{display:none}
+  .filter-label{display:none}
+  .fbtn,.wbtn{white-space:nowrap;flex-shrink:0;padding:0.3rem 0.75rem;font-size:0.75rem}
+
+  /* Layout - list only, map hidden by default */
+  .layout{display:block;height:auto;overflow:visible;min-height:0}
+  .event-list{height:auto;overflow:visible;border-right:none;min-height:0}
+  #map{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;height:100vh!important}
+  #map.map-visible{display:block}
+
+  /* Map toggle button */
+  .map-toggle-bar{display:flex;justify-content:center;padding:0.5rem 1rem;background:#fff;border-bottom:1px solid var(--border);flex-shrink:0}
+  .map-toggle-btn-mobile{background:var(--green);color:#fff;border:none;padding:0.4rem 1.2rem;border-radius:999px;font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:0.4rem}
+  .map-close-btn{position:fixed;top:1rem;right:1rem;z-index:600;background:var(--green);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+  #map.map-visible ~ .map-close-btn{display:flex}
+
+  /* Cards - bigger touch targets */
+  .ecard{padding:0.85rem 1rem}
+  .etitle{font-size:0.88rem}
+  .emeta{font-size:0.73rem}
+
+  /* Detail panel - full bottom sheet */
+  .detail-panel{
+    width:100%;
+    border-right:none;
+    border-top:3px solid var(--red);
+    max-height:80vh;
+    overflow-y:auto;
+    padding:0.75rem 1rem 2rem;
+    border-radius:16px 16px 0 0;
+    box-shadow:0 -4px 24px rgba(0,0,0,0.15);
+  }
+  .detail-title{white-space:normal;font-size:1rem}
+  .detail-meta{white-space:normal}
+  .detail-actions{gap:0.5rem}
+  .detail-action-btn,.detail-map-btn{padding:0.4rem 0.8rem;font-size:0.75rem}
+
+  /* Footer - compact */
+  .footer-bar{font-size:0.7rem;padding:0.4rem 0.75rem;gap:0.5rem}
+
+  /* List bottom padding so last card isn't behind detail panel */
+  .all-shown,.show-more-btn{margin-bottom:6rem}
+}
+
+/* Hide map toggle bar on desktop only */
+@media(min-width:701px){
+  .map-toggle-bar{display:none}
+  .map-close-btn{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <a class="logo" href="https://camarillocaller.com">The Camarillo Caller</a>
+  <a class="sub-btn" href="https://www.camarillocaller.com/subscribe">Subscribe Free &#8594;</a>
+</header>
+<div class="hero">
+  <h1>Camarillo Events</h1>
+  <p>Everything happening in your community &#8212; updated weekly</p>
+</div>
+<div class="filters">
+  <span class="filter-label">Filter:</span>
+  <button class="fbtn active" data-cat="all">All</button>
+  <button class="fbtn" data-cat="featured">⭐ Featured</button>
+  <button class="fbtn" data-cat="kids">Kids</button>
+  <button class="fbtn" data-cat="community">Community</button>
+  <button class="fbtn" data-cat="food">Food</button>
+  <button class="fbtn" data-cat="markets">Markets</button>
+  <button class="fbtn" data-cat="arts">Arts</button>
+  <span class="filter-label" style="margin-left:0.4rem">When:</span>
+  <button class="wbtn" id="weekendBtn" onclick="window.toggleWeekend()">This Weekend</button>
+</div>
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search events..." autocomplete="off">
+</div>
+<div class="map-toggle-bar">
+  <button class="map-toggle-btn-mobile" onclick="window.toggleMobileMap()">🗺 View Map</button>
+</div>
+<div class="layout">
+  <div class="event-list" id="eventList">
+    <div class="status-msg"><div class="spinner"></div><br><br>Loading events...</div>
+  </div>
+  <div id="map"></div>
+  <button class="map-close-btn" id="mapCloseBtn" onclick="window.toggleMobileMap()">✕</button>
+</div>
+<div class="detail-panel" id="detailPanel">
+  <button class="detail-close" onclick="window.closeDetail()">&#10005;</button>
+  <div id="detailContent"></div>
+</div>
+<div class="footer-bar">
+  Know about an event? <a href="#" onclick="window.location.href='mailto:hello@camarillocaller.com?subject=Event%20Submission%20for%20Camarillo%20Events';return false;">Submit it here</a>
+  &nbsp;&middot;&nbsp;
+  <a href="https://www.camarillocaller.com/subscribe">Subscribe to the newsletter &#8594;</a>
+</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+window.WORKER = 'https://camarillo-events-api.gabrielle-ridgeway.workers.dev/';
+window.CATS = {
+  featured:{dot:'#c8960c',bg:'#fef8e7',text:'#7a5a00'},
+  arts:{dot:'#7b6fa0',bg:'#ede8f5',text:'#5a4f80'},
+  food:{dot:'#c4501a',bg:'#fde8de',text:'#9b3a10'},
+  kids:{dot:'#3a7ca5',bg:'#dceef8',text:'#2a5c85'},
+  community:{dot:'#b8860b',bg:'#fbf0d0',text:'#7a5a00'},
+  markets:{dot:'#b05e8a',bg:'#f5e0ee',text:'#804060'}
+};
+window.allEvents = [];
+window.activeFilter = 'all';
+window.searchQuery = '';
+window.visibleDays = 14;
+window.weekendOnly = false;
+window.markers = {};
+window.map = null;
+
+window.fmtDate = function(d) {
+  return new Date(d+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+};
+
+window.getFiltered = function() {
+  var evts;
+  if(window.activeFilter==='all') {
+    evts = window.allEvents;
+  } else if(window.activeFilter==='featured') {
+    evts = window.allEvents.filter(function(e){ return e.title.indexOf('⭐')>-1; });
+  } else if(window.activeFilter==='free') {
+    evts = window.allEvents.filter(function(e){ return e.free; });
+  } else {
+    evts = window.allEvents.filter(function(e){return e.cat===window.activeFilter;});
+  }
+  if (window.searchQuery) {
+    evts = evts.filter(function(e){
+      return e.title.toLowerCase().indexOf(window.searchQuery)>-1 ||
+        (e.location&&e.location.toLowerCase().indexOf(window.searchQuery)>-1) ||
+        (e.description&&e.description.toLowerCase().indexOf(window.searchQuery)>-1);
+    });
+  }
+  if (window.weekendOnly) {
+    // Use T12:00:00 to avoid UTC midnight timezone issues
+    // getDay(): 0=Sun, 5=Fri, 6=Sat
+    evts = evts.filter(function(e){
+      var day = new Date(e.date + 'T12:00:00').getDay();
+      return day === 0 || day === 5 || day === 6;
+    });
+  }
+  return evts;
+};
+
+window.getWindowed = function(evts) {
+  var now = new Date();
+  // Today's date in local time (not UTC to avoid timezone issues)
+  var yr=now.getFullYear(), mo=String(now.getMonth()+1).padStart(2,'0'), dy=String(now.getDate()).padStart(2,'0');
+  var todayStr = yr+'-'+mo+'-'+dy;
+  var cutoff = new Date();
+  cutoff.setDate(cutoff.getDate()+window.visibleDays);
+  var cutStr = cutoff.toISOString().substr(0,10);
+  // Only show events from today onwards (no past events)
+  var result = evts.filter(function(e){return e.date>=todayStr && e.date<=cutStr;});
+  return result;
+};
+
+window.renderList = function() {
+  var el = document.getElementById('eventList');
+  var filtered = window.getFiltered();
+  var windowed = window.getWindowed(filtered);
+  var hasMore = filtered.length > windowed.length;
+  if (!filtered.length) { el.innerHTML='<div class="status-msg">No events for this filter.</div>'; return; }
+  if (!windowed.length) { el.innerHTML='<div class="status-msg">No events in the next '+window.visibleDays+' days.<br><button class="show-more-btn" onclick="window.showMore()">Show more</button></div>'; return; }
+
+  // Build featured section — only shown in All view, not when a filter is active
+  var featuredHtml = '';
+  if(window.activeFilter === 'all' && !window.searchQuery) {
+    var featuredEvts = window.getWindowed(window.allEvents).filter(function(e){
+      return e.title.indexOf('⭐') > -1;
+    });
+    if(featuredEvts.length > 0) {
+      featuredHtml = '<div class="featured-section"><div class="featured-header">⭐ Featured Events</div>';
+      for(var fi=0; fi<featuredEvts.length; fi++) {
+        var fe = featuredEvts[fi];
+        var fc = window.CATS[fe.cat] || window.CATS.community;
+        featuredHtml += '<div class="featured-card" data-id="'+fe.id+'" onclick="window.cardClickEl(this)" data-eid="'+fe.id+'">'+
+          '<div class="edot" style="background:'+fc.dot+'"></div>'+
+          '<div class="einfo">'+
+          '<div class="etitle">'+fe.title+'</div>'+
+          '<div class="emeta"><span>'+fe.time+'</span>'+(fe.location?'<span class="eloc">📍 '+fe.location+'</span>':'')+'</div>'+
+          '<span class="ebadge" style="background:'+fc.bg+';color:'+fc.text+'">'+fe.cat+'</span>'+
+          (fe.free?'<span class="free-badge">Free</span>':'')+
+          '</div></div>';
+      }
+      featuredHtml += '</div>';
+    }
+  }
+
+  var groups={}, i, e, d;
+  for (i=0;i<windowed.length;i++){e=windowed[i];if(!groups[e.date])groups[e.date]=[];groups[e.date].push(e);}
+  var dates=Object.keys(groups).sort();
+  var label=window.visibleDays===14?'Next 2 weeks':window.visibleDays===30?'Next 30 days':window.visibleDays===60?'Next 60 days':'Next 90 days';
+  var html=featuredHtml+'<div class="list-top"><h2>'+label+'</h2><span>'+windowed.length+' events</span></div>';
+  for (i=0;i<dates.length;i++){
+    d=dates[i];
+    html+='<div class="date-label">'+window.fmtDate(d)+'</div>';
+    var de=groups[d];
+    for (var j=0;j<de.length;j++){
+      e=de[j];var c=window.CATS[e.cat]||window.CATS.community;
+      html+='<div class="ecard" data-id="'+e.id+'" onclick="window.cardClick(\''+e.id+'\')">'
+        +'<div class="edot" style="background:'+c.dot+'"></div>'
+        +'<div class="einfo">'
+        +'<div class="etitle">'+e.title+'</div>'
+        +'<div class="emeta"><span>'+e.time+'</span>'+(e.location?'<span class="eloc">&#128205; '+e.location+'</span>':'')+'</div>'
+        +'<span class="ebadge" style="background:'+c.bg+';color:'+c.text+'">'+e.cat+'</span>'
+        +(e.free?'<span class="free-badge">Free</span>':'')
+        +'</div></div>';
+    }
+  }
+  if (hasMore){var nl=window.visibleDays===14?'30 days':window.visibleDays===30?'60 days':'90 days';html+='<button class="show-more-btn" onclick="window.showMore()">Show next '+nl+' &#8594;</button>';}
+  else{html+='<div class="all-shown">All upcoming events shown</div>';}
+  html+='<div style="height:160px"></div>';
+  el.innerHTML=html;
+};
+
+window.showMore = function() {
+  if(window.visibleDays===14)window.visibleDays=30;
+  else if(window.visibleDays===30)window.visibleDays=60;
+  else window.visibleDays=90;
+  window.renderList();window.renderMarkers();
+};
+
+window.renderMarkers = function() {
+  var id;
+  for(id in window.markers){if(window.markers.hasOwnProperty(id))window.map.removeLayer(window.markers[id]);}
+  window.markers={};
+  var evts=window.getWindowed(window.getFiltered());
+  // Collect known-good coords to fit map bounds to, ignoring default-center fallbacks
+  var knownBounds=[];
+  for(var i=0;i<evts.length;i++){
+    (function(e){
+      var c=window.CATS[e.cat]||window.CATS.community;
+      // Show all events but dim unknown ones; only fit bounds to known-good coords
+      var opacity=e.known?'':'opacity:0.4;';
+      var isFeatured=e.title.indexOf('⭐')>-1;
+      var pinHtml=isFeatured
+        ? '<div style="font-size:20px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));cursor:pointer;'+opacity+'">⭐</div>'
+        : '<div style="width:24px;height:24px;border-radius:50% 50% 50% 0;background:'+c.dot+';border:2.5px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.25);transform:rotate(-45deg);cursor:pointer;'+opacity+'"></div>';
+      var icon=L.divIcon({className:'',html:pinHtml,iconSize:[24,24],iconAnchor:[12,24],popupAnchor:[0,-26]});
+      var m=L.marker([e.lat,e.lng],{icon:icon}).addTo(window.map);
+      m.bindPopup('<div style="font-family:Inter,sans-serif;font-size:12px;min-width:160px;max-width:200px"><strong style="display:block;margin-bottom:3px">'+e.title+'</strong><span style="color:#666">'+e.time+' &middot; '+window.fmtDate(e.date)+(e.location?'<br>&#128205; '+e.location:'')+'</span><br><span style="display:inline-block;margin-top:5px;background:'+c.bg+';color:'+c.text+';padding:1px 6px;border-radius:999px;font-size:10px;font-weight:600;text-transform:uppercase">'+e.cat+'</span></div>');
+      m.on('click',function(){window.openDetail(String(e.id));window.highlightCard(String(e.id));});
+      window.markers[String(e.id)]=m;
+      if(e.known) knownBounds.push([e.lat,e.lng]);
+    })(evts[i]);
+  }
+  // Fit map to show all known events, with padding so pins aren't clipped
+  // Falls back to default Camarillo view if no known coords
+  if(knownBounds.length>0){
+    if(knownBounds.length===1){
+      window.map.setView(knownBounds[0],14);
+    } else {
+      window.map.fitBounds(knownBounds,{padding:[40,40],maxZoom:15});
+    }
+  } else {
+    window.map.setView([34.222,-119.040],13);
+  }
+};
+
+window.getById = function(id) {
+  var sid=String(id);
+  for(var i=0;i<window.allEvents.length;i++){if(String(window.allEvents[i].id)===sid)return window.allEvents[i];}
+  return null;
+};
+
+window.cardClickEl = function(el) {
+  var id = el.getAttribute('data-eid') || el.getAttribute('data-id');
+  window.cardClick(id);
+};
+
+window.cardClick = function(id) {
+  var e=window.getById(id);
+  if(!e)return;
+  // Only interact with map if it's visible (on mobile map may be hidden)
+  var mapEl=document.getElementById('map');
+  var mapVisible=mapEl && (mapEl.style.display!=='none') && mapEl.classList.contains('map-visible') || window.innerWidth>700;
+  if(mapVisible && e.known) {
+    window.map.flyTo([e.lat,e.lng],15,{duration:0.7});
+    if(window.markers[String(e.id)])window.markers[String(e.id)].openPopup();
+  }
+  window.highlightCard(id);
+  window.openDetail(id);
+};
+
+window.openDetail = function(id) {
+  var e=window.getById(id);
+  if(!e)return;
+  var c=window.CATS[e.cat]||window.CATS.community;
+  var mapsUrl='https://www.google.com/maps/search/'+encodeURIComponent((e.location||'')+' Camarillo CA');
+  var desc=e.description||'';
+  var LIMIT=200;
+  var isLong=desc.length>LIMIT;
+  var descHtml='';
+  if(desc){
+    descHtml='<div class="detail-desc'+(isLong?' collapsed':'')+'" id="detailDesc">'+desc+'</div>';
+    if(isLong)descHtml+='<button class="see-more-btn" id="seeMoreBtn" onclick="window.toggleDesc()">See more &#9660;</button>';
+  }
+  // Build Google Calendar link
+  var gcalStart=e.date.replace(/-/g,'')+'T'+(e.time==='All day'?'000000':window.timeToGcal(e.time));
+  var gcalEnd=e.date.replace(/-/g,'')+'T'+(e.time==='All day'?'235900':window.timeToGcal(e.time,2));
+  var gcalUrl='https://calendar.google.com/calendar/render?action=TEMPLATE'
+    +'&text='+encodeURIComponent(e.title)
+    +'&dates='+gcalStart+'/'+gcalEnd
+    +(e.location?'&location='+encodeURIComponent(e.location):'')
+    +(e.description?'&details='+encodeURIComponent(e.description.substr(0,500)):'');
+  // Build shareable event link
+  var shareUrl=window.location.origin+window.location.pathname+'?event='+e.id;
+  // Build email-a-friend link
+  var emailBody='I thought you might be interested in this event:%0A%0A'+encodeURIComponent(e.title)+'%0A'+encodeURIComponent(window.fmtDate(e.date)+' at '+e.time)+(e.location?'%0A'+encodeURIComponent(e.location):'')+('%0A%0ADetails: '+shareUrl);
+  var emailUrl='mailto:?subject='+encodeURIComponent('Check out: '+e.title)+'&body='+emailBody;
+
+  document.getElementById('detailContent').innerHTML=
+    '<span class="detail-cat" style="background:'+c.bg+';color:'+c.text+'">'+e.cat+'</span>'
+    +'<div class="detail-title">'+e.title+'</div>'
+    +'<div class="detail-meta">'+e.time+' &middot; '+window.fmtDate(e.date)+'</div>'
+    +(e.location?'<div class="detail-meta">&#128205; '+e.location+'</div>':'')
+    +'<div class="detail-actions">'
+    +(e.location?'<a class="detail-map-btn" href="'+mapsUrl+'" target="_blank">&#128205; Maps</a>':'')
+    +'<a class="detail-action-btn" href="'+gcalUrl+'" target="_blank">&#128197; Add to Calendar</a>'
+    +'<button class="detail-action-btn" onclick="window.emailFriend(this)" data-url="'+encodeURIComponent(emailUrl)+'">&#9993; Email a Friend</button>'
+    +'<button class="detail-action-btn" onclick="window.copyEventLink(this)" data-url="'+shareUrl+'">&#128279; Copy Link</button>'
+    +'</div>'
+    +descHtml;
+  document.getElementById('detailPanel').classList.add('open');
+  // Update URL to reflect open event
+  history.replaceState(null,'',window.location.pathname+'?event='+e.id);
+};
+
+window.toggleDesc = function() {
+  var d=document.getElementById('detailDesc');
+  var b=document.getElementById('seeMoreBtn');
+  if(!d||!b)return;
+  if(d.classList.contains('collapsed')){
+    d.classList.remove('collapsed');
+    b.innerHTML='See less &#9650;';
+  } else {
+    d.classList.add('collapsed');
+    b.innerHTML='See more &#9660;';
+  }
+};
+
+window.timeToGcal = function(timeStr, addHours) {
+  // Convert "1:00 PM" to "130000" for Google Calendar
+  if(!timeStr||timeStr==='All day') return '090000';
+  var m=timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if(!m) return '090000';
+  var h=parseInt(m[1],10), min=m[2], ap=m[3].toUpperCase();
+  if(ap==='PM'&&h!==12) h+=12;
+  if(ap==='AM'&&h===12) h=0;
+  if(addHours) h=Math.min(h+addHours,23);
+  return String(h).padStart(2,'0')+min+'00';
+};
+
+window.emailFriend = function(btn) {
+  var url = decodeURIComponent(btn.getAttribute('data-url'));
+  window.location.href = url;
+};
+
+window.copyEventLink = function(btn) {
+  var url = btn.getAttribute('data-url');
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function(){
+      var orig=btn.innerHTML;btn.innerHTML='&#10003; Copied!';setTimeout(function(){btn.innerHTML=orig;},2000);
+    });
+  } else {
+    window.prompt('Copy this link:',url);
+  }
+};
+
+// Weekend filter
+window.toggleWeekend = function() {
+  window.weekendOnly = !window.weekendOnly;
+  var btn=document.getElementById('weekendBtn');
+  if(btn) btn.classList.toggle('weekend-active', window.weekendOnly);
+  window.updateURL();
+  window.closeDetail();window.renderList();window.renderMarkers();
+};
+
+window.toggleMobileMap = function() {
+  var map = document.getElementById('map');
+  var btn = document.querySelector('.map-toggle-btn-mobile');
+  var closeBtn = document.getElementById('mapCloseBtn');
+  var isVisible = map.classList.contains('map-visible');
+  if(isVisible) {
+    map.classList.remove('map-visible');
+    if(btn) btn.innerHTML = '🗺 View Map';
+    if(closeBtn) closeBtn.style.display = 'none';
+  } else {
+    map.classList.add('map-visible');
+    if(btn) btn.innerHTML = '✕ Close Map';
+    if(closeBtn) closeBtn.style.display = 'flex';
+    // Trigger resize so Leaflet redraws correctly
+    setTimeout(function(){ window.map.invalidateSize(); }, 100);
+  }
+};
+
+window.closeDetail = function() {
+  document.getElementById('detailPanel').classList.remove('open');
+  var cards=document.querySelectorAll('.ecard');
+  for(var i=0;i<cards.length;i++)cards[i].classList.remove('active');
+  window.updateURL();
+};
+
+window.highlightCard = function(id) {
+  var cards=document.querySelectorAll('.ecard');
+  for(var i=0;i<cards.length;i++)cards[i].classList.remove('active');
+  var sid=String(id);
+  var card=document.querySelector('.ecard[data-id="'+sid+'"]');
+  if(card){card.classList.add('active');card.scrollIntoView({behavior:'smooth',block:'nearest'});}
+};
+
+window.addEventListener('load',function(){
+  window.map=L.map('map',{center:[34.222,-119.040],zoom:13});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:19}).addTo(window.map);
+
+  var btns=document.querySelectorAll('.fbtn');
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function(){
+      var ab=document.querySelectorAll('.fbtn');
+      for(var j=0;j<ab.length;j++)ab[j].classList.remove('active');
+      this.classList.add('active');
+      window.activeFilter=this.getAttribute('data-cat');
+      window.searchQuery='';
+      document.getElementById('searchInput').value='';
+      window.updateURL();
+      window.closeDetail();window.renderList();window.renderMarkers();
+    });
+  }
+
+  document.getElementById('searchInput').addEventListener('input',function(){
+    window.searchQuery=this.value.toLowerCase().trim();
+    window.updateURL();
+    window.closeDetail();window.renderList();window.renderMarkers();
+  });
+
+  // Read URL params and apply filters on load
+  window.applyURLParams = function() {
+    var params = new URLSearchParams(window.location.search);
+    var cat = params.get('cat');
+    var search = params.get('search');
+    var weekend = params.get('weekend');
+    var eventId = params.get('event');
+    if(cat && window.CATS[cat]) {
+      window.activeFilter = cat;
+      var btns2 = document.querySelectorAll('.fbtn');
+      for(var i=0;i<btns2.length;i++) {
+        btns2[i].classList.toggle('active', btns2[i].getAttribute('data-cat')===cat);
+      }
+    }
+    if(search) {
+      window.searchQuery = search.toLowerCase().trim();
+      document.getElementById('searchInput').value = search;
+    }
+    if(weekend==='1') {
+      window.weekendOnly = true;
+      var wb=document.getElementById('weekendBtn');
+      if(wb) wb.classList.add('weekend-active');
+    }
+    // Store event id to open after events load
+    window.pendingEventId = eventId || null;
+  };
+
+  // Update URL to reflect current filter/search state without reloading page
+  window.updateURL = function() {
+    var params = new URLSearchParams();
+    if(window.activeFilter && window.activeFilter !== 'all') params.set('cat', window.activeFilter);
+    if(window.searchQuery) params.set('search', window.searchQuery);
+    if(window.weekendOnly) params.set('weekend', '1');
+    var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+    history.replaceState(null, '', newUrl);
+  };
+
+  window.applyURLParams();
+
+  fetch(window.WORKER)
+    .then(function(r){return r.json();})
+    .then(function(data){
+      window.allEvents=data;
+      if(!window.allEvents.length){document.getElementById('eventList').innerHTML='<div class="status-msg">No upcoming events found.</div>';return;}
+      window.renderList();window.renderMarkers();
+      // If a specific event was linked to, open it
+      if(window.pendingEventId) {
+        setTimeout(function(){
+          window.cardClick(window.pendingEventId);
+        },300);
+      }
+    })
+    .catch(function(){document.getElementById('eventList').innerHTML='<div class="status-msg">Could not load events. Please try again later.</div>';});
+});
+</script>
+</body>
+</html>

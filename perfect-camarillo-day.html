@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Your Perfect Camarillo Day? — The Camarillo Caller</title>
+<meta name="description" content="Answer 5 quick questions and get a personalized Camarillo day itinerary — free from The Camarillo Caller.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1f3b2c;
+  --green-dark: #152a1e;
+  --red: #d3280e;
+  --cream: #f3e3c9;
+  --cream-mid: #ecdbb8;
+  --cream-dark: #e0cca0;
+  --gold: #c8960c;
+  --border: #d4bc96;
+  --text: #1a1209;
+  --gray: #6b5c3e;
+  --white: #fffef9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(180,150,100,0.04) 28px, rgba(180,150,100,0.04) 29px);
+}
+
+/* NAV */
+nav {
+  background: var(--green-dark);
+  border-bottom: 4px solid var(--red);
+  padding: 0 2rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo img { height: 68px; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.4)); }
+.nav-logo-link { display: flex; align-items: center; }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-right a { color: rgba(243,227,201,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-cta { background: var(--red) !important; color: var(--cream) !important; padding: 0.45rem 1.1rem; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); font-family: 'Bebas Neue', sans-serif !important; font-size: 1rem !important; letter-spacing: 0.1em !important; }
+@media(max-width:600px) { .nav-right a:not(.nav-cta) { display: none; } }
+
+/* HERO */
+.hero {
+  background: var(--green);
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 4px solid var(--red);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before { content: '📢'; position: absolute; font-size: 14rem; opacity: 0.04; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-15deg); pointer-events: none; }
+.hero-eyebrow { display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 0.82rem; letter-spacing: 0.18em; color: var(--gold); border: 1px solid rgba(200,150,12,0.3); padding: 0.2rem 0.85rem; margin-bottom: 1rem; }
+.hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--cream); letter-spacing: 0.03em; line-height: 1; margin-bottom: 0.5rem; }
+.hero h1 span { color: var(--gold); }
+.hero-sub { font-family: 'Libre Baskerville', serif; font-size: 0.95rem; font-style: italic; color: rgba(243,227,201,0.72); max-width: 480px; margin: 0 auto; line-height: 1.65; }
+
+/* QUIZ CONTAINER */
+.quiz-wrap { max-width: 680px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+/* PROGRESS BAR */
+.progress-bar {
+  background: var(--cream-dark);
+  height: 6px;
+  border-radius: 3px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--red);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.progress-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 0.4rem; }
+
+/* QUESTION CARD */
+.question-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem;
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+.q-number { font-family: 'Bebas Neue', sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; color: var(--red); margin-bottom: 0.5rem; }
+.q-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); letter-spacing: 0.03em; color: var(--green); line-height: 1.1; margin-bottom: 1.75rem; }
+
+/* ANSWER OPTIONS */
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.option-btn {
+  background: var(--cream);
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  padding: 1.1rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-family: 'DM Sans', sans-serif;
+}
+.option-btn:hover { border-color: var(--green); background: var(--cream-mid); }
+.option-btn.selected { border-color: var(--red); background: rgba(211,40,14,0.06); }
+.option-btn.selected .opt-emoji { transform: scale(1.2); }
+.opt-emoji { font-size: 1.4rem; line-height: 1; flex-shrink: 0; transition: transform 0.15s; }
+.opt-label { font-size: 0.88rem; font-weight: 600; color: var(--green); line-height: 1.3; margin-bottom: 0.15rem; }
+.opt-sub { font-size: 0.7rem; color: var(--gray); line-height: 1.4; font-style: italic; }
+
+.next-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  background: var(--green);
+  color: var(--cream);
+  border: none;
+  padding: 0.85rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.15s;
+  display: none;
+}
+.next-btn:hover { background: var(--green-dark); }
+.next-btn.visible { display: block; }
+
+/* EMAIL GATE */
+.email-gate {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 2rem;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+  display: none;
+}
+.email-gate h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; color: var(--green); margin-bottom: 0.5rem; }
+.email-gate p { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-style: italic; color: var(--gray); margin-bottom: 1.5rem; line-height: 1.6; }
+.email-form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 380px; margin: 0 auto; }
+.email-form input {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  color: var(--text);
+  background: var(--cream);
+}
+.email-form input:focus { border-color: var(--green); }
+.email-form button {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.email-privacy { font-size: 0.65rem; color: var(--gray); margin-top: 0.5rem; }
+
+/* LOADING */
+.loading-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  display: none;
+}
+.loading-megaphone { font-size: 3rem; animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) rotate(-5deg); } }
+.loading-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--green); margin-top: 1rem; }
+.loading-sub { font-family: 'Libre Baskerville', serif; font-size: 0.82rem; font-style: italic; color: var(--gray); margin-top: 0.4rem; }
+
+/* RESULT */
+.result-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  display: none;
+  animation: slideIn 0.4s ease;
+}
+.result-header {
+  background: var(--green);
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.result-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px); }
+.result-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 0.4rem; }
+.result-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: 0.04em; color: var(--cream); line-height: 1.05; }
+.result-body { padding: 1.5rem 1.75rem; }
+.result-body-text {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+.result-body-text h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--green);
+  margin: 1.25rem 0 0.35rem;
+  border-left: 4px solid var(--red);
+  padding-left: 0.6rem;
+}
+.result-body-text p { margin-bottom: 0.75rem; }
+.result-footer {
+  background: var(--cream-dark);
+  border-top: 2px solid var(--border);
+  padding: 1rem 1.75rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.result-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+}
+.result-btn.primary { background: var(--green); color: var(--cream); }
+.result-btn.secondary { background: var(--red); color: #fff; }
+
+/* ERROR */
+.error-msg { color: var(--red); font-size: 0.75rem; margin-top: 0.4rem; display: none; }
+
+/* FOOTER */
+.page-footer { background: var(--green-dark); border-top: 4px solid var(--green); padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+.footer-logo-text span { color: var(--red); }
+.footer-copy { font-size: 0.62rem; color: rgba(243,227,201,0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://www.camarillocaller.com" class="nav-logo-link">
+    <img src="/logo.jpg" alt="The Camarillo Caller" style="height:68px;width:auto;display:block;filter:drop-shadow(2px 2px 0 rgba(0,0,0,0.4))">
+  </a>
+  <div class="nav-right">
+    <a href="https://www.camarillocaller.com">Newsletter</a>
+    <a class="nav-cta" href="https://www.camarillocaller.com/subscribe">Subscribe Free</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">The Camarillo Caller</div>
+  <h1>What's Your <span>Perfect</span><br>Camarillo Day?</h1>
+  <p class="hero-sub">Answer 5 quick questions and get a personalized Camarillo itinerary built just for you.</p>
+</div>
+
+<div class="quiz-wrap">
+
+  <!-- PROGRESS -->
+  <div id="progressWrap" style="display:none">
+    <div class="progress-label" id="progressLabel">Question 1 of 5</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="question-card" id="questionCard">
+    <div class="q-number" id="qNumber">QUESTION 1 OF 5</div>
+    <div class="q-text" id="qText"></div>
+    <div class="options" id="optionsGrid"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+  </div>
+
+  <!-- EMAIL GATE -->
+  <div class="email-gate" id="emailGate">
+    <div style="font-size:2.5rem;margin-bottom:0.75rem">📬</div>
+    <h2>Your itinerary is ready!</h2>
+    <p>Enter your email and we'll send your personalized Camarillo day plan straight to your inbox. Plus you'll get The Camarillo Caller every Thursday — local news, events, and hidden gems. Free.</p>
+    <div class="email-form">
+      <input type="email" id="emailInput" placeholder="Enter your email address...">
+      <div class="error-msg" id="emailError">Please enter a valid email address.</div>
+      <button onclick="submitEmail()">Build My Camarillo Day →</button>
+      <div class="email-privacy">No spam, ever. Unsubscribe anytime. By entering your email you'll join The Camarillo Caller newsletter.</div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-state" id="loadingState">
+    <div class="loading-megaphone">📢</div>
+    <div class="loading-text">Building your perfect day...</div>
+    <div class="loading-sub">Checking the farmers market hours, calling the brewery, consulting the locals...</div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-card" id="resultCard">
+    <div class="result-header">
+      <div class="result-eyebrow">Your Personalized Camarillo Itinerary</div>
+      <div class="result-title" id="resultTitle"></div>
+    </div>
+    <div class="result-body">
+      <div class="result-body-text" id="resultBody"></div>
+    </div>
+    <div class="result-footer">
+      <button class="result-btn primary" onclick="restartQuiz()">Take the Quiz Again</button>
+      <a class="result-btn secondary" href="https://www.camarillocaller.com/subscribe">Subscribe to The Caller</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="page-footer">
+  <a class="footer-logo-text" href="https://www.camarillocaller.com">📢 The Camarillo <span>Caller</span></a>
+  <div class="footer-copy">© 2026 The Camarillo Caller</div>
+</footer>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "How do you want to start your morning?",
+    options: [
+      { emoji: "☕", label: "Coffee and a slow start", sub: "Ease into it, no rush", value: "slow_morning" },
+      { emoji: "🥞", label: "Big brunch first", sub: "Fuel up before anything", value: "brunch" },
+      { emoji: "🥕", label: "Farmers market stroll", sub: "Fresh air, fresh produce", value: "market" },
+      { emoji: "🥾", label: "Morning hike or walk", sub: "Get moving early", value: "outdoors" }
+    ]
+  },
+  {
+    text: "What kind of afternoon sounds best?",
+    options: [
+      { emoji: "🛍️", label: "Shopping and browsing", sub: "Outlets, boutiques, window shopping", value: "shopping" },
+      { emoji: "🏛️", label: "History or culture", sub: "Museums, art, local landmarks", value: "culture" },
+      { emoji: "🌳", label: "Outside and exploring", sub: "Parks, trails, fresh air", value: "nature" },
+      { emoji: "🍽️", label: "Eating my way through town", sub: "Lunch spot, snacks, treats", value: "food" }
+    ]
+  },
+  {
+    text: "Who are you spending the day with?",
+    options: [
+      { emoji: "🧍", label: "Just me", sub: "Solo day, my rules", value: "solo" },
+      { emoji: "💑", label: "Partner or date", sub: "Romantic or relaxed", value: "couple" },
+      { emoji: "👨‍👩‍👧", label: "Family with kids", sub: "Kid-friendly everything", value: "family" },
+      { emoji: "👯", label: "Friends", sub: "Group energy, social vibe", value: "friends" }
+    ]
+  },
+  {
+    text: "How do you want to end the evening?",
+    options: [
+      { emoji: "🍺", label: "Drinks and live music", sub: "Brewery, bar, or venue", value: "nightlife" },
+      { emoji: "🌅", label: "Sunset at the beach", sub: "Head to the coast", value: "beach" },
+      { emoji: "🍜", label: "Really good dinner out", sub: "Sit-down, take your time", value: "dinner" },
+      { emoji: "🛋️", label: "Early and easy", sub: "Home by 8, no complaints", value: "early_night" }
+    ]
+  },
+  {
+    text: "What's your vibe for the day?",
+    options: [
+      { emoji: "🗺️", label: "Explorer — show me something new", sub: "Hidden gems, off the beaten path", value: "explorer" },
+      { emoji: "😌", label: "Relaxed — no plans, no stress", sub: "Whatever happens, happens", value: "relaxed" },
+      { emoji: "📸", label: "Content creator — I want good spots", sub: "Instagrammable, interesting", value: "creative" },
+      { emoji: "🍽️", label: "Foodie — it's all about the food", sub: "Every stop has to be worth eating", value: "foodie" }
+    ]
+  }
+];
+
+let currentQ = 0;
+let answers = [];
+let selectedOption = null;
+
+function initQuiz() {
+  document.getElementById('progressWrap').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  document.getElementById('qNumber').textContent = `QUESTION ${currentQ + 1} OF ${QUESTIONS.length}`;
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('progressLabel').textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+  document.getElementById('progressFill').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  selectedOption = null;
+  document.getElementById('nextBtn').classList.remove('visible');
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="opt-emoji">${opt.emoji}</span><div><div class="opt-label">${opt.label}</div><div class="opt-sub">${opt.sub}</div></div>`;
+    btn.onclick = () => selectOption(btn, opt.value, i);
+    grid.appendChild(btn);
+  });
+}
+
+function selectOption(btn, value, idx) {
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedOption = value;
+  document.getElementById('nextBtn').classList.add('visible');
+
+  // Auto-advance on last question
+  if (currentQ === QUESTIONS.length - 1) {
+    document.getElementById('nextBtn').textContent = 'Get My Itinerary →';
+  }
+}
+
+function nextQuestion() {
+  if (!selectedOption) return;
+  answers.push(selectedOption);
+
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showEmailGate();
+  }
+}
+
+function showEmailGate() {
+  document.getElementById('questionCard').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('emailGate').style.display = 'block';
+}
+
+function submitEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  const errorEl = document.getElementById('emailError');
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+
+  document.getElementById('emailGate').style.display = 'none';
+  document.getElementById('loadingState').style.display = 'block';
+
+  generateItinerary(email);
+}
+
+async function generateItinerary(email) {
+  const answerSummary = [
+    `Morning preference: ${answers[0]}`,
+    `Afternoon preference: ${answers[1]}`,
+    `Who they're with: ${answers[2]}`,
+    `Evening preference: ${answers[3]}`,
+    `Day vibe: ${answers[4]}`
+  ].join('\n');
+
+  const prompt = `You are The Camarillo Caller, a friendly hyperlocal newsletter for Camarillo, California. 
+
+A reader just answered a quiz about their perfect Camarillo day. Based on their answers, write them a personalized itinerary for a day in Camarillo, CA.
+
+Their answers:
+${answerSummary}
+
+Write a warm, specific, fun itinerary with 4-5 time-stamped stops. Use real Camarillo places — choose from: Camarillo Premium Outlets, Old Town Camarillo, Camarillo Farmers Market (Saturdays 8am-12pm at 2220 Ventura Blvd), Camarillo Grove Park (off-leash dogs on weekdays), Camarillo Ranch House (Sat/Sun tours $5), CAF SoCal WWII Aviation Museum (free), Studio Channel Islands Art Center, Institution Ale Company (trivia Tuesdays 7pm), Twisted Oak Tavern (live music, gastropub), House of Bamboo (tiki bar, reservations recommended), Azafran (Peruvian, date night), Establos Meat Market (Mexican, casual), Lola Betty's Kitchen (Filipino, takeout), Point Mugu State Beach (short drive).
+
+Format your response like this — start with a catchy itinerary title on the first line (no label, just the title), then write the itinerary. Use this format for each stop:
+[TIME]: [PLACE NAME]
+[1-2 sentences about what to do/order/experience there. Warm and specific. No em dashes.]
+
+End with one short sentence encouraging them to subscribe to The Camarillo Caller for weekly local picks.
+
+Keep the whole thing under 350 words. No em dashes anywhere. Write like a friendly neighbor, not a travel guide.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content[0].text;
+
+    document.getElementById('loadingState').style.display = 'none';
+    showResult(text);
+
+  } catch(err) {
+    // Fallback itinerary if API fails
+    document.getElementById('loadingState').style.display = 'none';
+    showResult(getFallback());
+  }
+}
+
+function getFallback() {
+  return `Your Perfect Camarillo Saturday
+
+8:30 AM: Camarillo Farmers Market
+Start your morning at the Old Town farmers market on Ventura Blvd. Grab a coffee and browse local produce and vendors. The vibe is relaxed and genuinely local.
+
+11:00 AM: Camarillo Ranch House
+Walk the grounds of this historic landmark for free or join a docent-led tour ($5, cash only). It's one of those Camarillo spots most locals haven't visited and should.
+
+1:00 PM: Establos Meat Market
+Lunch at Establos. Order the tamales and a breakfast burrito. Big portions, fast service, and some of the best meat in town.
+
+3:00 PM: Camarillo Premium Outlets
+Spend the afternoon browsing over 150 stores. Nike, Coach, Crocs, Toys R Us — it's easy to lose a few hours here.
+
+6:30 PM: Twisted Oak Tavern
+End the night at Twisted Oak. Short rib nachos, strong drinks, and live music most nights. A reliable Camarillo classic.
+
+Subscribe to The Camarillo Caller every Thursday for more local picks, events, and hidden gems.`;
+}
+
+function showResult(text) {
+  const lines = text.trim().split('\n');
+  const title = lines[0];
+  const body = lines.slice(1).join('\n').trim();
+
+  document.getElementById('resultTitle').textContent = title;
+
+  // Format the body nicely
+  const bodyEl = document.getElementById('resultBody');
+  bodyEl.innerHTML = '';
+
+  const paragraphs = body.split('\n\n');
+  paragraphs.forEach(para => {
+    para = para.trim();
+    if (!para) return;
+
+    // Check if it's a time-stamped stop
+    if (/^\d+:\d+\s*(AM|PM)/i.test(para)) {
+      const lines = para.split('\n');
+      const h = document.createElement('h3');
+      h.textContent = lines[0];
+      bodyEl.appendChild(h);
+      if (lines[1]) {
+        const p = document.createElement('p');
+        p.textContent = lines[1];
+        bodyEl.appendChild(p);
+      }
+    } else {
+      const p = document.createElement('p');
+      p.textContent = para;
+      bodyEl.appendChild(p);
+    }
+  });
+
+  document.getElementById('resultCard').style.display = 'block';
+}
+
+function restartQuiz() {
+  currentQ = 0;
+  answers = [];
+  selectedOption = null;
+  document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('emailGate').style.display = 'none';
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('emailInput').value = '';
+  renderQuestion();
+}
+
+// Start the quiz
+initQuiz();
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c075c0ad11254ed899a09cd16e097b16"}'></script>
+</body>
+</html>

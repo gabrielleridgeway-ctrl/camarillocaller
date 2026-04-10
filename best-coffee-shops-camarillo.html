@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Coffee Shops in Camarillo, CA (2026) - The Camarillo Caller</title>
+<meta name="description" content="The best coffee shops in Camarillo, CA from a cozy local art cafe to a record lounge and the best cafe de olla in town. Local picks from The Camarillo Caller.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1f3b2c;
+  --red: #d3280e;
+  --cream: #f3e3c9;
+  --cream-mid: #ecdbb8;
+  --cream-dark: #e0cca0;
+  --gold: #c8960c;
+  --border: #d4bc96;
+  --text: #1a1209;
+  --gray: #6b5c3e;
+  --white: #fffef9;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 28px,
+    rgba(180,150,100,0.04) 28px, rgba(180,150,100,0.04) 29px
+  );
+}
+
+/* NAV */
+nav {
+  background: var(--green);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--red);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav-logo span { color: var(--red); }
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links a { color: rgba(243,227,201,0.7); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+.nav-links a:hover { color: var(--cream); }
+.nav-sub { background: var(--red); color: var(--cream) !important; padding: 0.4rem 1rem; border-radius: 3px; font-weight: 700 !important; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  background: var(--cream-dark);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  max-width: 100%;
+}
+.breadcrumb a { color: var(--green); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 0.4rem; color: var(--border); }
+
+/* ARTICLE HERO */
+.article-hero {
+  background: var(--white);
+  border-bottom: 3px double var(--border);
+  padding: 2.5rem 2rem 2rem;
+}
+.article-hero-inner { max-width: 780px; margin: 0 auto; }
+.article-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+}
+.article-hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 0.03em;
+  color: var(--green);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+.article-hero .subtitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+.article-meta {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border);
+}
+.meta-pill {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* EDITORIAL NOTE */
+.editorial-note {
+  max-width: 780px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+  line-height: 1.55;
+  font-style: italic;
+  display: flex;
+  gap: 0.4rem;
+}
+.editorial-note::before { content: 'ℹ'; flex-shrink: 0; }
+
+/* LAYOUT */
+.article-layout {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 2rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media(max-width:700px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .article-hero { padding: 1.5rem 1rem; }
+  .editorial-note { padding: 0 1rem; }
+  nav .nav-links { display: none; }
+}
+
+/* INTRO */
+.article-intro {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  border-radius: 0 4px 4px 0;
+}
+
+/* RESTAURANT LISTINGS */
+.restaurant {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+  transition: box-shadow 0.15s;
+}
+.restaurant:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+.restaurant-header { padding: 1.25rem 1.25rem 0; }
+.restaurant-rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+}
+.cuisine-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--cream);
+  color: var(--green);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+.restaurant h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  margin-bottom: 0.3rem;
+  line-height: 1;
+}
+.restaurant-vibe {
+  font-size: 0.72rem;
+  color: var(--gray);
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--border);
+}
+.vibe-item { display: flex; align-items: center; gap: 0.25rem; }
+
+.restaurant-body { padding: 0.85rem 1.25rem; }
+.restaurant-body p {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+}
+
+/* Order box */
+.order-box {
+  background: var(--cream);
+  border: 1px solid var(--cream-dark);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.85rem;
+}
+.order-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  margin-bottom: 0.3rem;
+}
+.order-items {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Best for */
+.best-for {
+  font-size: 0.75rem;
+  color: var(--gray);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.45;
+}
+.best-for::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.restaurant-footer {
+  padding: 0.65rem 1.25rem 0.9rem;
+  border-top: 1px solid #f0ece4;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.r-btn {
+  font-size: 0.7rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.12s;
+}
+.r-btn:hover { background: var(--green); color: var(--cream); }
+.r-btn.primary { background: var(--green); color: var(--cream); border-color: var(--green); }
+
+/* Section break */
+.section-break {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--border);
+}
+.section-break::before, .section-break::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* SPONSOR NOTE */
+.sponsor-note {
+  font-size: 0.68rem;
+  color: #bbb;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+  line-height: 1.6;
+}
+.sponsor-note a { color: var(--green); text-decoration: underline; }
+
+/* SUBMIT CTA */
+.submit-cta {
+  background: var(--green);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.submit-cta h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+.submit-cta p { font-size: 0.75rem; color: rgba(243,227,201,0.7); margin-bottom: 0.75rem; line-height: 1.5; }
+.submit-cta a {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 76px; }
+.sidebar-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.sidebar-card-header {
+  background: var(--cream-dark);
+  padding: 0.5rem 0.85rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-card-body { padding: 0.85rem; }
+.sidebar-sub-card {
+  background: var(--red);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.sidebar-sub-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.sidebar-sub-card p { font-size: 0.72rem; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; line-height: 1.4; font-style: italic; font-family: 'Libre Baskerville', serif; }
+.sidebar-sub-card input { width: 100%; padding: 0.45rem 0.7rem; border: none; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; margin-bottom: 0.4rem; outline: none; }
+.sidebar-sub-card button { width: 100%; background: var(--green); color: var(--cream); border: none; padding: 0.45rem; border-radius: 3px; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.06em; cursor: pointer; }
+.bestof-list { list-style: none; }
+.bestof-list li { border-bottom: 1px dashed var(--border); }
+.bestof-list li:last-child { border-bottom: none; }
+.bestof-list a { display: flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.85rem; text-decoration: none; font-size: 0.78rem; color: var(--green); font-weight: 500; }
+.bestof-list a:hover { color: var(--red); }
+.bestof-list a::before { content: '→'; color: var(--red); font-size: 0.65rem; }
+.events-preview { list-style: none; padding: 0.5rem 0.85rem; }
+.events-preview li { padding: 0.4rem 0; border-bottom: 1px dashed var(--border); font-size: 0.75rem; color: var(--gray); line-height: 1.4; }
+.events-preview li:last-child { border-bottom: none; }
+.events-preview strong { color: var(--green); display: block; font-size: 0.78rem; }
+.sidebar-events-link { display: block; text-align: center; padding: 0.5rem; background: var(--green); color: var(--cream); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.06em; }
+
+/* FOOTER */
+.page-footer-cta {
+  background: var(--cream-dark);
+  border-top: 3px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.page-footer-cta h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; color: var(--green); margin-bottom: 0.3rem; }
+.page-footer-cta p { font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-style: italic; color: var(--gray); margin-bottom: 1rem; }
+.fcta-form { display: flex; max-width: 380px; margin: 0 auto; border: 2px solid var(--green); border-radius: 4px; overflow: hidden; }
+.fcta-form input { flex: 1; padding: 0.65rem 0.85rem; border: none; background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; }
+.fcta-form button { background: var(--green); color: var(--cream); border: none; padding: 0.65rem 1rem; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.06em; cursor: pointer; white-space: nowrap; }
+footer { background: var(--green); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; border-top: 3px solid var(--red); }
+.footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.06em; color: var(--cream); text-decoration: none; }
+.footer-logo-text span { color: var(--red); }
+.footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.footer-nav a { font-size: 0.7rem; color: rgba(243,227,201,0.5); text-decoration: none; }
+.footer-nav a:hover { color: var(--cream); }
+.footer-copy { font-size: 0.65rem; color: rgba(243,227,201,0.3); }
+
+.restaurant-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+.photo-credit {
+  font-size: 0.58rem;
+  color: var(--gray);
+  padding: 0.2rem 1.25rem;
+  font-style: italic;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+</style>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c075c0ad11254ed899a09cd16e097b16"}'></script><!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="nav-links">
+    <a href="#">Newsletter</a>
+    <a href="#">Local News</a>
+    <a href="https://events.camarillocaller.com">Events</a>
+    <a href="#">Best Of</a>
+    <a class="nav-sub" href="#">Subscribe Free</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="#">Home</a><span>›</span>
+  <a href="#">Best Of Camarillo</a><span>›</span>
+  Best Restaurants
+</div>
+
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-cat">☕ Best Of Camarillo</div>
+    <h1>Best Coffee Shops in Camarillo (2026)</h1>
+    <p class="subtitle">From a creative local cafe with seasonal drinks to a record lounge and the best cafe de olla in town. The best coffee spots in Camarillo, picked by someone who actually lives here.</p>
+    <div class="article-meta">
+      <span>By Gabrielle Ridgeway</span>
+      <span>Updated April 2026</span>
+      <span class="meta-pill">☕ 5 picks</span>
+      <span class="meta-pill">📍 Camarillo, CA</span>
+    </div>
+  </div>
+</div>
+
+<div class="editorial-note" style="max-width:1060px;padding:0.75rem 2rem 0">
+  These are my personal picks based on living in Camarillo. I only recommend places I'd send a friend. None of these listings are paid or sponsored.
+</div>
+
+<div class="article-layout">
+<div class="article-main">
+
+  <p class="article-intro">Camarillo has more going on in the coffee scene than most people realize. These five spots each have their own personality from a cozy cafe with local art to a record lounge you can lose an afternoon in. These are the places locals actually go back to.</p>
+
+
+  <!-- ENTRY 1 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/Treelounge.jpg" alt="Tree Lounge Coffee interior, Camarillo" style="object-position:center top">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Overall</div>
+        <div class="cuisine-tag">Coffee Cafe</div>
+      </div>
+      <h2>Tree Lounge Coffee</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🎨 Local art on the walls</span>
+        <span class="vibe-item">🛋️ Stay as long as you want</span>
+        <span class="vibe-item">☕ Creative menu</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>If you only try one coffee shop in Camarillo, make it Tree Lounge. It has a relaxed, creative feel with local art on the walls and a menu that goes well beyond the basics. The kind of place you can meet a friend or settle in for a few hours without feeling rushed or like you need to leave.</p>
+      <p>The seasonal drinks are worth paying attention to they rotate and they're usually really good. A genuine neighborhood coffee shop in the best sense of the phrase.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Brown sugar latte · Seasonal specialty drinks</div>
+      </div>
+      <div class="best-for">Best for meeting a friend, working remotely, or anyone who wants a coffee shop with actual character.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/2364+Ventura+Blvd+Camarillo+CA" target="_blank">📍 Get Directions</a>
+    </div>
+  </div>
+
+  <div class="section-break">More Great Coffee Spots</div>
+
+  <!-- ENTRY 2 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/Makenna.jpg" alt="Makenna Koffee drinks, Camarillo" style="object-position:center">
+    <div class="photo-credit">Photo via Makenna Koffee</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Variety</div>
+        <div class="cuisine-tag">Cafe</div>
+      </div>
+      <h2>Makenna Koffee</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">📋 Big menu</span>
+        <span class="vibe-item">🕐 Long hours</span>
+        <span class="vibe-item">📍 Near the Outlets</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>One of the easiest go-to spots in Camarillo. The menu is big, the hours are long, and there is genuinely something for everyone coffee, matcha, smoothies, breakfast. It is especially convenient if you are already near the outlets or need a reliable stop without much thought.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Flavored latte · Specialty drinks · Matcha</div>
+      </div>
+      <div class="best-for">Best for a quick and easy stop, grabbing something before shopping, or anyone who wants a big menu with lots of options.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/660+Ventura+Blvd+Camarillo+CA" target="_blank">📍 Get Directions</a>
+      <a class="r-btn" href="https://makennakoffeecamarillo.square.site/" target="_blank">View Menu</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 3 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/cafef.webp" alt="Cafe Ficelle latte and croissant, Camarillo" style="object-position:center">
+    <div class="photo-credit">Photo via Cafe Ficelle</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Coffee + Pastries</div>
+        <div class="cuisine-tag">Cafe + Bakery</div>
+      </div>
+      <h2>Café Ficelle</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🥐 Excellent pastries</span>
+        <span class="vibe-item">🕯️ Calm atmosphere</span>
+        <span class="vibe-item">✨ Slightly elevated</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>A little more cafe than coffee shop, but absolutely worth it. Cafe Ficelle has a calmer, slightly elevated feel good for when you want to slow down rather than rush through a drink. The pastries are genuinely excellent, which sets it apart from most coffee spots in town.</p>
+      <p>Order the almond croissant. You will not regret it.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Latte · Almond croissant</div>
+      </div>
+      <div class="best-for">Best for a slow morning, a pastry craving, or anyone who wants a coffee experience that feels a step above the usual.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/2024+Ventura+Blvd+Camarillo+CA" target="_blank">📍 Get Directions</a>
+      <a class="r-btn" href="https://www.cafeficelle.com/order-online-location/" target="_blank">Order Online</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 4 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/americanpie.jpg" alt="American Pie Records Coffee House interior, Camarillo" style="object-position:center">
+    <div class="photo-credit">Photo via Google Maps</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Most Unique</div>
+        <div class="cuisine-tag">Record Lounge + Cafe</div>
+      </div>
+      <h2>American Pie Records Coffee House</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">🎵 Part record lounge</span>
+        <span class="vibe-item">🌙 Late-night hangout</span>
+        <span class="vibe-item">🍕 Food available</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>Not your typical coffee shop and that is exactly the point. Part record lounge, part cafe, part late-night hangout. You can grab a coffee, listen to music, order food, and stay longer than you planned. It has a vibe you are not going to find anywhere else in Camarillo.</p>
+      <p>Because they also serve food and stay open later than most coffee spots, it works as a full stop rather than just a quick caffeine run. One of the more genuinely interesting places in the city.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Coffee · Something off the food menu</div>
+      </div>
+      <div class="best-for">Best for an evening hangout, music lovers, anyone who wants somewhere with real personality and no rush.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/45+Rincon+Dr+Camarillo+CA" target="_blank">📍 Get Directions</a>
+      <a class="r-btn" href="https://www.americanpierecords.com/" target="_blank">View Website</a>
+    </div>
+  </div>
+
+  <!-- ENTRY 5 -->
+  <div class="restaurant">
+    <img class="restaurant-photo" src="/Lucero.jpeg" alt="Panaderia Lucero drinks, Camarillo" style="object-position:center 40%">
+    <div class="photo-credit">Photo via Panaderia Lucero</div>
+    <div class="restaurant-header">
+      <div class="restaurant-rank-row">
+        <div class="rank-num">Best Local Favorite</div>
+        <div class="cuisine-tag">Mexican Bakery + Cafe</div>
+      </div>
+      <h2>Panaderia Lucero</h2>
+      <div class="restaurant-vibe">
+        <span class="vibe-item">💰 $</span>
+        <span class="vibe-item">🥐 Fresh pan dulce</span>
+        <span class="vibe-item">☕ Cafe de olla</span>
+      </div>
+    </div>
+    <div class="restaurant-body">
+      <p>Simple, affordable, and consistently good. This is where you go for cafe de olla and fresh pan dulce. It is less of a sit-and-work spot and more of a quick, satisfying stop that locals have been going to for years.</p>
+      <p>If you have never had cafe de olla, this is the place to try it. Spiced, a little sweet, and nothing like the coffee you get anywhere else in town. Grab a concha while you are at it.</p>
+      <div class="order-box">
+        <div class="order-label">📢 What to order</div>
+        <div class="order-items">Cafe de olla · Concha · Pan dulce</div>
+      </div>
+      <div class="best-for">Best for a quick affordable stop, anyone who loves Mexican pastries, and locals who want something real and unpretentious.</div>
+    </div>
+    <div class="restaurant-footer">
+      <a class="r-btn primary" href="https://www.google.com/maps/search/601+Mobil+Ave+Camarillo+CA" target="_blank">📍 Get Directions</a>
+      <a class="r-btn" href="https://www.instagram.com/panaderia.lucero" target="_blank">View Instagram</a>
+    </div>
+  </div>
+
+
+
+  <div class="sponsor-note">
+    This list reflects my genuine personal recommendations. None of these restaurants are paid placements. <a href="#">Learn about advertising with The Camarillo Caller</a>
+  </div>
+
+  <div class="submit-cta">
+    <h3>Know a place we missed?</h3>
+    <p>Reply to any newsletter issue or email us we update these guides regularly.</p>
+    <a href="/cdn-cgi/l/email-protection#650d0009090a2506040804170c09090a0604090900174b060a08">📢 Tell Us About It</a>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="sidebar-sub-card">
+    <h3>Get the best of Camarillo every Thursday</h3>
+    <p>Events, local news, and hidden gems free to your inbox.</p>
+    <input type="email" placeholder="Your email address">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">More Best Of Camarillo</div>
+    <ul class="bestof-list">
+      <li><a href="#">🎉 Best Things To Do</a></li>
+      <li><a href="#">💎 Hidden Gems</a></li>
+      <li><a href="#">☕ Best Coffee Shops</a></li>
+      <li><a href="#">🥞 Best Brunch Spots</a></li>
+      <li><a href="#">👨‍👩‍👧 Best Family Activities</a></li>
+      <li><a href="#">🌳 Best Parks & Outdoors</a></li>
+      <li><a href="#">🌮 Best Tacos</a></li>
+      <li><a href="#">🍺 Best Bars & Breweries</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">📅 This Weekend</div>
+    <ul class="events-preview">
+      <li><strong>Trinity Spring Craft Market</strong>Sat 11am · 2304 Antonio Ave</li>
+      <li><strong>Friday Night Car Cruises</strong>Fri 4pm · Old Town Camarillo</li>
+      <li><strong>Camarillo Farmers Market</strong>Sat 7am · Daily Drive</li>
+    </ul>
+    <a class="sidebar-events-link" href="https://events.camarillocaller.com">Browse all events →</a>
+  </div>
+
+</div>
+</div>
+
+<div class="page-footer-cta">
+  <h3>Don't Miss Next Thursday's Issue</h3>
+  <p>Local news, events, and more guides like this every week, free.</p>
+  <div class="fcta-form">
+    <input type="email" placeholder="Enter your email...">
+    <button>SUBSCRIBE FREE →</button>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo-text" href="#">📢 The Camarillo <span>Caller</span></a>
+  <div class="footer-nav">
+    <a href="#">Newsletter</a>
+    <a href="#">Events</a>
+    <a href="#">Best Of</a>
+    <a href="#">Local News</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 The Ca
